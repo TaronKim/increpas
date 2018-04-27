@@ -251,8 +251,10 @@ transition: all 0.3s ease;
 .board_list li .layout {border:1px solid #e1e1e1; padding-bottom:19px;}
 .board_list li .layout img {width:100%;}
 .board_list:after {clear:both; margin:0; padding:0; display:block; content:"";}
-.board_list li .layout h1 {padding-left:17px; padding-right:15px; overflow:hidden; padding-top:21px; margin-bottom:12px; font-size:16px; color:#303030;height: 19px;}
-.board_list li .layout h2 {padding-left:17px; padding-right:15px; overflow:hidden; margin-bottom:30px; font-size:14px; color:#303030; opacity:0.8; filter:alpha(opacity=80);height: 16px;}
+.board_list li .layout h1 {padding-left:17px; padding-right:15px; overflow:hidden; padding-top:21px; margin-bottom:12px; font-size:16px; color:#303030;height: 19px;display: block;white-space: nowrap;
+    text-overflow: ellipsis;}
+.board_list li .layout h2 {padding-left:17px; padding-right:15px; overflow:hidden; margin-bottom:30px; font-size:14px; color:#303030; opacity:0.8; filter:alpha(opacity=80);height: 16px;display: block;white-space: nowrap;
+    text-overflow: ellipsis;}
 .board_list li .layout p {padding-left:17px; padding-right:15px; overflow:hidden; font-size:12px; color:#303030;opacity:0.8; filter:alpha(opacity=80);}
 .board_list li .img {border-bottom:1px solid #e1e1e1;}
 
