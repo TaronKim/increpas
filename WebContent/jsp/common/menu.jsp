@@ -2,16 +2,16 @@
     pageEncoding="UTF-8"%>
     <div class="wrap">
 <div class="top">
-	<a href="index.inc" class="logo"><img src="images/logo.png" alt="인크레파스 로고" /></a>
-	<a href="#" class="m_menu"><img src="images/m_menu.png" alt="인크레파스 메뉴"></a>
+	<a href="index.inc" class="logo"><img src="<%=request.getContextPath() %>/images/logo.png" alt="인크레파스 로고" /></a>
+	<a href="#" class="m_menu"><img src="<%=request.getContextPath() %>/images/m_menu.png" alt="인크레파스 메뉴"></a>
 	<div class="top_menu">
 		<a href="#">교육센터 소개</a><a href="#" class="on">교육과정</a><a href="#">고객센터</a><a href="#">커뮤니티</a><a href="#">취업지원</a>
 	</div>
 	<div class="top_menu_r">
-		<a href="index.inc"><img src="images/top_btn1.png" alt="인크레파스 융합SW교육센터" />HOME</a>
+		<a href="index.inc"><img src="<%=request.getContextPath() %>/images/top_btn1.png" alt="인크레파스 융합SW교육센터" />HOME</a>
 		
-		<a href="login.inc"><img src="images/top_btn2.png" alt="인크레파스 로그인" />로그인</a>
-		<a href="registry.inc"><img src="images/top_btn3.png" alt="인크레파스 회원가입" />회원가입</a>
+		<a href="login.inc"><img src="<%=request.getContextPath() %>/images/top_btn2.png" alt="인크레파스 로그인" />로그인</a>
+		<a href="registry.inc"><img src="<%=request.getContextPath() %>/images/top_btn3.png" alt="인크레파스 회원가입" />회원가입</a>
 	
 	
 	</div>

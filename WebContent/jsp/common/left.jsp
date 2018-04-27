@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="customer">
-		<img src="images/customer.jpg" alt="인크레파스 전화" />
+		<img src="<%=request.getContextPath() %>/images/customer.jpg" alt="인크레파스 전화" />
 		<div id="katalk_div">
 			<a href="http://pf.kakao.com/_UrkxcV/chat">
-			<img src="images/KaTalk.jpg" alt="카톡상담"/>
+			<img src="<%=request.getContextPath() %>/images/KaTalk.jpg" alt="카톡상담"/>
 			</a>
 			<h1>추천과정</h1>
 		</div>

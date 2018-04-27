@@ -10,11 +10,11 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련">
 <title>인크레파스: 국비무료 취업과정</title>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
-<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 
-<script src="js/jquery-1.10.2.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script src="../../js/jquery-1.10.2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/main.js"></script>
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.min.js"></script>
@@ -22,10 +22,10 @@
 <![endif]-->
 
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
 
-<script src="js/slickcustomscroll.js"></script>
+<script src="../../js/slickcustomscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -58,8 +58,8 @@
 </script>
 </head>
 <body>
-	<jsp:include page="/jsp/common/menu.jsp" flush="true"></jsp:include>
-	<jsp:include page="/jsp/common/left.jsp" ></jsp:include>
+	<jsp:include page="../../jsp/common/menu.jsp" flush="true"></jsp:include>
+	<jsp:include page="../../jsp/common/left.jsp" ></jsp:include>
 	<div class="main_con">
 		<div class="sub_layout">
 			<div class="location">
@@ -142,13 +142,13 @@
 					</div>
 				</div>
 				
-				<jsp:include page="/jsp/common/right.jsp"></jsp:include>
+				<jsp:include page="../../jsp/common/right.jsp"></jsp:include>
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/jsp/common/footer.jsp"></jsp:include>
+	<jsp:include page="../../jsp/common/footer.jsp"></jsp:include>
 
-<script type="text/javascript" src="js/jquery.stylish-select.js"></script>
+<script type="text/javascript" src="../../js/jquery.stylish-select.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('select').sSelect({ddMaxHeight: '300px'});

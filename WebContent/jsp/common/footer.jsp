@@ -7,7 +7,7 @@
 
 <div class="foot_2">
 	<div>
-		<span class="s1"><img src="images/foot_logo.png" alt="인크레파스 융합SW교육센터 로고" /></span>
+		<span class="s1"><img src="<%=request.getContextPath() %>/images/foot_logo.png" alt="인크레파스 융합SW교육센터 로고" /></span>
 		<strong>
 			<span class="s2">
 				㈜ 인크레파스<br>
