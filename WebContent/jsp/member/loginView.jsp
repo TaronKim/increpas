@@ -11,17 +11,17 @@
 <meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련">
 <title>인크레파스: 개발자로 성장하는 학교</title>
 
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
-<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 
 <script src="js/jquery-1.10.2.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="../../js/main.js"></script>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
 
-<script src="js/slickcustomscroll.js"></script>
-<script type="text/javascript" src="js/httpRequest.js"></script>
+<script src="../../js/slickcustomscroll.js"></script>
+<script type="text/javascript" src="../../js/httpRequest.js"></script>
 
 
 <script type="text/javascript">    
@@ -41,35 +41,20 @@
 	}
     
     function login(){
-    	var id = document.getElementById("id");
-    	var s1 = id.value;
-    	var pwd = document.getElementById("pwd");
-    	var s2 = pwd.value;
-		
-		var str = trim(s1);
-		
-		if(str == ""){
-			alert("아이디를 입력하세요");
-			
-			id.value = str;//기존에 입력된 공백 제거
-			id.focus();//커서 가져다 놓기
-			
-			return;// 더 이상의 처리를 포기함(제어권 반환)
-		}
-		
-		var str2 = trim(s2);
-		
-		if(str2 == ""){
-			alert("비밀번호를 입력하세요");
-			
-			pwd.value = str2;//기존에 입력된 공백 제거
-			pwd.focus();//커서 가져다 놓기
-			
+    	var id = $("#id");
+    	var pwd = $("#pwd");
+    	if(id.val().trim().length <= 0){
+    		alert("아이디를 입력하세요!");
+			id.focus();
+			return;
+    	}
+    	if(pwd.val().trim().length <= 0){
+			alert("비밀번호를 입력하세요!");
+			pwd.focus();
 			return;
 		}
-		var param = "id="+encodeURIComponent(str)+"&pwd="+encodeURIComponent(str2);
-    	
-    	sendRequest("sign_run.inc",param,r_sign,"post",true);
+    	document.forms[0].action = "sign_run.jsp";
+		document.forms[0].submit();
     }
     
     function r_sign(){
@@ -101,8 +86,8 @@
 
 <body onload="init()">
 
- <jsp:include page="/jsp/common/menu.jsp" flush="true"></jsp:include>
-<jsp:include page="/jsp/common/left.jsp" ></jsp:include> 
+ <jsp:include page="../../jsp/common/menu.jsp" flush="true"></jsp:include>
+<jsp:include page="../../jsp/common/left.jsp" ></jsp:include> 
 	<div class="main_con">
 		<div class="sub_layout">
 			<div class="location">
@@ -134,12 +119,12 @@
 						</form>
 					</div>
 				</div>
-				<jsp:include page="/jsp/common/right.jsp" ></jsp:include>
+				<jsp:include page="../../jsp/common/right.jsp" ></jsp:include>
 			</div>
 		</div>
 	</div>
 	
-	<jsp:include page="/jsp/common/footer.jsp" ></jsp:include>
+	<jsp:include page="../../jsp/common/footer.jsp" ></jsp:include>
 
 
 

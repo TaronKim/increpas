@@ -1,5 +1,13 @@
+<%@page import="vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	Object obj = session.getAttribute("mvo");
+
+	MemberVO mvo = null;
+	if(obj != null)
+		mvo = (MemberVO)obj;
+ %>
     <div class="wrap">
 <div class="top">
 	<a href="index.inc" class="logo"><img src="<%=request.getContextPath() %>/images/logo.png" alt="인크레파스 로고" /></a>
@@ -7,12 +15,25 @@
 	<div class="top_menu">
 		<a href="#">교육센터 소개</a><a href="#" class="on">교육과정</a><a href="#">고객센터</a><a href="#">커뮤니티</a><a href="#">취업지원</a>
 	</div>
-	<div class="top_menu_r">
-		<a href="index.inc"><img src="<%=request.getContextPath() %>/images/top_btn1.png" alt="인크레파스 융합SW교육센터" />HOME</a>
+	<div id="log_fail" class="<%if(obj == null)
+									out.print("show");
+								else
+									out.print("hide");%>">
+		<a href="index.inc"><img src="images/top_btn1.png" alt="인크레파스 융합SW교육센터" />HOME</a>
 		
-		<a href="login.inc"><img src="<%=request.getContextPath() %>/images/top_btn2.png" alt="인크레파스 로그인" />로그인</a>
-		<a href="registry.inc"><img src="<%=request.getContextPath() %>/images/top_btn3.png" alt="인크레파스 회원가입" />회원가입</a>
-	
+		<a href="jsp/member/loginView.jsp"><img src="images/top_btn2.png" alt="인크레파스 로그인" />로그인</a>
+		<a href="registry.inc"><img src="images/top_btn3.png" alt="인크레파스 회원가입" />회원가입</a>
+	</div>
+	<div id="log_suc" class="<%if(obj != null)
+									out.print("show");
+								else
+									out.print("hide");%>">
+									
+		<a href="index.inc"><img src="images/top_btn1.png" alt="인크레파스 융합SW교육센터" />HOME</a>
+		
+		<a href="jsp/member/sing_out.jsp"><img src="images/top_btn2.png" alt="인크레파스 로그아웃" />로그아웃</a>
+		<a href="registry.inc"><img src="images/top_btn3.png" alt="인크레파스 회원가입" />회원가입</a>
+	</div>
 	
 	</div>
 	<div class="sub">
