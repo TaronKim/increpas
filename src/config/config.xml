@@ -13,6 +13,7 @@
     </environment>
   </environments>
   <mappers>
+  	<mapper resource="mapper/project.xml"/>
     <mapper resource="mapper/study.xml"/>
   </mappers>
 </configuration>

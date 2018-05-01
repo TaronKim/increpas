@@ -2,6 +2,31 @@
 @import url("common.css");
 @charset "utf-8";
 
+/* 180501 kjh */
+	.board_list li .layout h2{height:17px;line-height:1.2;}
+	.board_list li.list_none{width:100%;}
+	.board_list li.list_none p{text-align: center;}
+
+	.btn_close{display: inline-block;margin-top:10px;vertical-align: top;width: 47px;height: 34px;text-align: center;line-height: 34px;
+background: #009add;border-radius: 3px;font-size: 14px;color: #fff;}
+	.pop_confirm{display:none;position:absolute;left:50%;top:50%;margin:-100px 0 0 -175px;width:350px;height:200px;background:#fff;border-radius:5px;border:1px solid #ccc;}
+	.pop_confirm .inner{padding-top:70px;text-align:center;}
+	.pop_confirm p{font-weight:bold;text-align:center;}
+
+	.sub_write{padding:30px 0;}
+	.table_style{border-collapse:collapse;}
+	.table_style th,
+	.table_style td{padding:5px 10px;border:1px solid #ccc;}
+	.table_style th{padding:5px 10px;background:#009add;color:#fff;}
+	
+	.table_style td input[type="text"]{width:100%;border:1px solid #ccc;border-radius:5px;}
+	.table_style td input[type="password"]{width:100px;border:1px solid #ccc;border-radius:5px;}
+	.table_style td input.writer,
+	.table_style td input.process{padding:0px 5px;background:#ccc;}
+	.table_style .btn_style{display: inline-block;vertical-align: top;padding:0 10px;height: 34px;text-align: center;
+	line-height: 34px;background: #009add;border-radius: 3px;font-size: 14px;color: #fff;}
+/* //180501 kjh */
+
 div.agree{
 	width: 100%;
 }
@@ -215,7 +240,8 @@ transition: all 0.3s ease;
 .sub_tit2 p {font-size:16px; color:#303030; font-weight:normal; padding-top:13px;opacity:0.8; filter:alpha(opacity=80);}
 .sub_tit2 p span {display:block;font-size:16px; color:#303030;}
 
-.search_area {text-align:right; padding-top:21px; padding-bottom:25px;}
+.search_area {position:relative;text-align:right; padding-top:21px; padding-bottom:25px;}
+.search_area .btn_write{position:absolute;left:0;}
 .search_input {width: 24%; max-width:173px; height:32px; padding-left:10px; line-height:32px;border:1px solid #c6c6c6; margin-right:5px;}
 .search_area a.search_btn {display:inline-block; vertical-align:top; width:47px; height:34px; text-align:center; line-height:34px; background:#009add; border-radius:3px; font-size:14px; color:#fff;}
 
