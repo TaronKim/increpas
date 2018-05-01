@@ -93,7 +93,7 @@
 					</div>
 					<div class="bo_btn">
 					<%
-						if(mvo != null){
+						if(mvo != null && mvo.getM_TYPE().equals("0")){
 					%>
 						<a href="project_update.jsp?c_idx=<%=c_idx %>&cPage=<%=cPage%>&e_idx=<%=pvo.getE_idx()%>&category=<%=pvo.getC_category()%>">수정</a>
 						<a href="delete_ok.jsp?c_idx=<%=c_idx%>&cPage=<%=cPage%>">삭제</a>

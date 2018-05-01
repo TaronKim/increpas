@@ -92,12 +92,10 @@ if (nowPage > totalPage) {
 					<div class="search_area">
 						<%
 							
-							if(mvo != null){
-								if(mvo.getM_TYPE().equals("0")){
+							if(mvo != null && mvo.getM_TYPE().equals("0")){
 						%>
-								<a href="project_write.jsp?cPage=<%=nowPage%>" class="search_btn btn_write">글쓰기</a>
+							<a href="project_write.jsp?cPage=<%=nowPage%>" class="search_btn btn_write">글쓰기</a>
 						<%
-								}
 							}
 						%>
 						<div class="select_type1 w160">
