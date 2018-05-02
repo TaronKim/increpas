@@ -40,81 +40,46 @@
 		return s;
 	}
     
-    function login(){
-    	var id = $("#id");
-    	var pwd = $("#pwd");
-    	if(id.val().trim().length <= 0){
-    		alert("아이디를 입력하세요!");
-			id.focus();
-			return;
-    	}
-    	if(pwd.val().trim().length <= 0){
-			alert("비밀번호를 입력하세요!");
-			pwd.focus();
+    function search(){
+		var name = $("#name");
+		if(name.val().trim().length <= 0){
+			alert("회원의 이름을 입력하세요!");
+			name.focus();
 			return;
 		}
-    	document.forms[0].action = "sign_run.jsp";
-		document.forms[0].submit();
+		document.f.submit();
     }
     
-    function r_sign(){
-    	if(xhr.readyState == 4 && xhr.status == 200){
-    		var res = trim(xhr.responseText);
-    		
-    		if(res.length == 0)
-    			location.href="index.inc";
-    		else if(res == "fail")
-    			$("#pop1").fadeIn();
-    		else
-    			location.href=res;
-    	}
-    }
-    
-	function init(){
-		
-		var ch = document.getElementById("ch");
-		
-		if(ch != null && ch.value == '0')
-			$("#pop2").fadeIn();
-		else if(ch != null && ch.value == '1')
-			$("#pop3").fadeIn();
-		
-	}
-	
 </script>
 </head>
 
-<body onload="init()">
+<body >
 
  <jsp:include page="../../jsp/common/menu.jsp" flush="true"></jsp:include>
 <jsp:include page="../../jsp/common/left.jsp" ></jsp:include> 
 	<div class="main_con">
 		<div class="sub_layout">
 			<div class="location">
-				<a><img src="<%=request.getContextPath() %>/images/home.jpg" alt="인크레파스 로그인" /></a><span>로그인</span>
+				<a><img src="<%=request.getContextPath() %>/images/home.jpg" alt="인크레파스 회원검색" /></a><span>회원검색</span>
 			</div>
 			<div class="sub_box1">
 				<div class="sub_layout2">
 					<div class="sub_tit5">
-						<h1>로그인</h1>
-						<p>인크레파스에 오신 것을 환영합니다.</p>
+						<h1>회원검색</h1>
+						<p>인크레파스 회원을 검색 할 수 있습니다.</p>
 					</div>
 					<div class="join_box2">
-						<form name="f" action="sign_run.inc" method="post">
+						<form name="f" action="search_ok.jsp" method="post">
 						<div class="join_box2_1">
 							<h1>
-								<img src="<%=request.getContextPath() %>/images/login_img1.jpg" alt="인크레파스 로그인" />
-								<span>로그인</span>을 하신 후<br/>
-								다양한 서비스를 이용하세요.
+								<img src="<%=request.getContextPath() %>/images/login_img1.jpg" alt="인크레파스 회원검색" />
+								<span>회원이름</span>을 입력 하신 후<br/>
+								검색버튼을 눌러주세요
 							</h1>
 							<ul>
-								<li><input type="text" id="id" name="id" placeholder="아이디를 입력하세요." /></li>
-								<li><input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력하세요." /></li>
-								<li class="btn"><a href="javascript:login()">로그인</a></li>
+								<li><input type="text" id="name" name="m_name" placeholder="검색하실 회원의 이름을 입력하세요." /></li>
+								<li class="btn1"><a href="javascript:search()">검색</a></li>
 							</ul>
-							<div class="txt">
-								<a href="find_id.inc">아이디 찾기</a><a href="find_pw.inc">비밀번호 재발급</a><span>아이디, 비밀번호가 기억나지 않으세요?</span>
-							</div>
 						</div>
 						</form>
 					</div>

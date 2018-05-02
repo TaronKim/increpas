@@ -165,7 +165,7 @@
 		<div class="m_submenu_area">
 			<a href="#" class="depth1">교육센터 소개</a>
 			<ul>
-				<li><a href="greet.inc">인사말</a></li>
+				<li><a href="/jsp/design/intro/greet.jsp">인사말</a></li>
 				<li><a href="story.inc">연혁</a></li>
 				<li><a href="facility.inc">교육시설</a></li>
 				<li><a href="professor.inc">교수소개</a></li>

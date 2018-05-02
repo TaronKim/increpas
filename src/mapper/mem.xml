@@ -3,9 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-<select id="login" resultType="incVO.MemberVO"
-	parameterType="java.util.Map">
+	<select id="login" resultType="vo.MemberVO" parameterType="java.util.Map">
 		SELECT * FROM mem_t
 		WHERE m_id = #{m_id} AND m_pw = #{m_pw}
 	</select>
+
+	<!-- 회원 검색 -->
+	<select id="all_search" resultType="vo.MemberVO">
+		SELECT * FROM mem_t
+	</select>
+	
+	<!-- 이름으로 회원 검색 -->
+	<select id="search" resultType="vo.MemberVO" parameterType="String">
+		SELECT * FROM mem_t
+		WHERE m_name like '%' || #{m_name} || '%'
+	</select>
+	
+	<!-- 회원 삭제/복구 -->
+	<update id="delMem" parameterType="java.util.Map">
+		UPDATE mem_t
+		SET m_status = #{m_status}
+		WHERE m_id = #{m_id} 
+	</update>
+	
 </mapper>

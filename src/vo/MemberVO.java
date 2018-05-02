@@ -1,23 +1,16 @@
 package vo;
 
 public class MemberVO {
-	private String
-	M_ID,
-	M_PW,
-	M_NAME,
-	M_BIRTH,
-	M_SEX,
-	M_EMAIL,
-	M_PHONE,
-	M_ZIP,
-	M_ADDR,
-	M_SCHOOL,
-	M_MAJOR,
-	M_GRAD,
-	M_PROCESS,
-	M_EDATE,
-	M_TYPE,
-	M_STATUS;
+	private String M_ID, M_PW, M_NAME, M_BIRTH, M_SEX, M_EMAIL, M_PHONE, M_ZIP, M_ADDR, M_SCHOOL, M_MAJOR, M_GRAD,
+			M_PROCESS, e_idx, M_EDATE, M_TYPE, M_STATUS;
+
+	public String getE_idx() {
+		return e_idx;
+	}
+
+	public void setE_idx(String e_idx) {
+		this.e_idx = e_idx;
+	}
 
 	public String getM_ID() {
 		return M_ID;
@@ -146,5 +139,5 @@ public class MemberVO {
 	public void setM_STATUS(String m_STATUS) {
 		M_STATUS = m_STATUS;
 	}
-	
+
 }

@@ -6,8 +6,6 @@
 <%
 	String m_id = request.getParameter("id");
 	String m_pw = request.getParameter("pwd");
-	out.println(m_id);
-	out.println(m_pw);
 	MemberVO mvo = mdao.login(m_id, m_pw);
 	if(mvo != null){
 		session.setAttribute("mvo", mvo);

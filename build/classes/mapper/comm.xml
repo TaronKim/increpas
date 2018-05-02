@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comm">
+
+  <!-- 사용자가 목록 요청시 호출되는 select -->
+  <select id="commList" parameterType="java.util.Map" resultType="vo.CommVO">
+  	SELECT * FROM (
+  		SELECT rownum AS r_num, a.* FROM (
+  			SELECT * FROM cmty_t
+  			<where>
+  			<if test="m_type != 0">
+  				c_status = 0 AND
+  			</if>
+  			c_category = 1
+  			</where>
+  			ORDER BY c_idx DESC
+  			) a
+  	) WHERE r_num BETWEEN #{begin} AND #{end}
+  </select>
+  
+  <!-- 사용자가 목록을 가져오기 위해 
+  	전체 게시물의 수를 알아야 한다. -->
+  <select id="totalCount" resultType="int">
+  	SELECT COUNT(*) FROM cmty_t
+  	WHERE c_status = 0 AND c_category = 1
+  </select>
+
+  <!-- 원글 저장 -->
+  <insert id="add" parameterType="java.util.Map">
+  	<if test="c_video != null">
+		INSERT INTO cmty_t(c_idx,c_title, c_img, c_video, c_category, m_id, 
+					c_status, c_writedate, c_content,e_idx)
+		VALUES( cmty_t_seq.NEXTVAL,#{c_title},#{c_img},#{c_video},1,#{m_id},
+				0, sysdate, #{c_content},100)
+	</if>
+	<if test="c_video == null">
+		INSERT INTO cmty_t(c_idx, c_title, c_img,  c_category, m_id, 
+					c_status,  c_writedate, c_content,e_idx)
+		VALUES(seq_cmty.NEXTVAL,#{c_title},#{c_img},1,#{m_id},
+				0,  sysdate, #{c_content},100)
+	</if>
+</insert>
+
+	<!-- c_idx값을 받아 특정 글을 검색하는 기능 -->
+	<select id="getComm" parameterType="String" resultType="vo.CommVO">
+		SELECT * FROM cmty_t
+		WHERE c_idx = #{c_idx}
+	</select>
+	
+	<!-- 삭제 -->
+	<update id="delComm" parameterType="java.util.Map">
+  		UPDATE cmty_t
+  		SET c_status = 1
+  		WHERE c_idx = #{c_idx}
+  </update>
+
+	<update id="editComm" parameterType="java.util.Map">
+  	UPDATE cmty_t
+  	SET c_title=#{c_title},
+  		c_content=#{c_content}
+  	<if test="c_img != null">
+  		,c_img=#{c_img}
+  	</if>
+  	WHERE c_idx=#{c_idx}
+  </update>
+
+</mapper>
