@@ -17,7 +17,6 @@ public class MemberDAO {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("m_id", m_id);
 		map.put("m_pw", m_pw);
-		System.out.println(m_id+m_pw);
 		mvo = ss.selectOne("member.login", map);
 		ss.close();
 		return mvo;

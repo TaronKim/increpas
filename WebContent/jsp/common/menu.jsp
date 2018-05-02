@@ -18,7 +18,7 @@
 	</div>
 	<div class="top_menu_r">
 
-				<a href="index.jsp"><img src="images/top_btn1.png" alt="인크레파스 융합SW교육센터"/>HOME</a>
+				<a href="index.jsp"><img src="<%=request.getContextPath() %>/images/top_btn1.png" alt="인크레파스 융합SW교육센터"/>HOME</a>
 		
 		<%
 			if(obj == null){
@@ -41,7 +41,7 @@
 				if(mvo.getM_TYPE().equals("0")){
 		 %>
 		
-					<a href="<%=request.getContextPath() %>/jsp/member/search_ok.jsp"><img src="<%=request.getContextPath() %>/images/top_btn1.png" alt="인크레파스 융합SW교육센터" />회원검색</a>
+					<a href="<%=request.getContextPath() %>/jsp/member/search_ok.jsp"><img src="<%=request.getContextPath() %>/images/top_btn3.png" alt="인크레파스 융합SW교육센터" />회원검색</a>
 		<%
 				}else{
 					 %>

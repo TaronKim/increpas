@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련">
+<meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련"/>
 <title>인크레파스: 개발자로 성장하는 학교</title>
 
 <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
@@ -62,7 +62,7 @@
     		var res = trim(xhr.responseText);
     		
     		if(res.length == 0)
-    			location.href="index.inc";
+    			location.href="index.jsp";
     		else if(res == "fail")
     			$("#pop1").fadeIn();
     		else
