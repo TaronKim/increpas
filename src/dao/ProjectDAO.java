@@ -21,8 +21,7 @@ public class ProjectDAO {
 		return pvo;
 	}
 	
-	
-	//전체 게시물 검색
+	//전체 게시물
 	public static ProjectVO[] projectList(int begin, int end, int m_type) {
 		
 		ProjectVO[] ar = null;
@@ -44,11 +43,49 @@ public class ProjectDAO {
 		
 	}
 	
-	//전체 게시물 수
-	public static int getTotalCount() {
+	//검색 게시물
+	public static ProjectVO[] sProjectList(int begin, int end, int m_type, String c_value, String keyword) {
+		
+		ProjectVO[] ar = null;
+		SqlSession ss = FactoryService.getFactory().openSession();
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("m_type", m_type);
+		map.put("c_value", c_value);
+		map.put("keyword", keyword);
+		
+		List<ProjectVO> list = ss.selectList("project.sProjectList", map);
+		
+		if(list != null && list.size() > 0) {
+			ar = new ProjectVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+		
+	}
+	
+	public static int getTotalCount(String m_type) {
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int cnt = ss.selectOne("project.totalCount");
+		Map<String, String> map = new HashMap<>();
+		map.put("m_type", m_type);
+		int cnt = ss.selectOne("project.totalCount",map);
+		ss.close();
+		return cnt;
+		
+	}
+	
+	public static int sGetTotalCount(String m_type, String c_value, String keyword) {
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		Map<String, String> map = new HashMap<>();
+		map.put("m_type", m_type);
+		map.put("c_value", c_value);
+		map.put("keyword", keyword);
+		int cnt = ss.selectOne("project.sTotalCount",map);
 		ss.close();
 		return cnt;
 		
@@ -121,7 +158,6 @@ public class ProjectDAO {
 		map.put("c_idx", c_idx);
 		map.put("c_title", title);
 		map.put("c_content", content);
-		//map.put("writer", writer);
 		map.put("c_img", fname);
 		map.put("e_idx", e_idx);
 		
@@ -160,5 +196,28 @@ public class ProjectDAO {
 		return value;
 		
 	}
+	
+	//게시물 검색
+	/*public static ProjectVO[] keywordSearch(String c_title, String keyword) {
+		//, String c_content, String c_titCon, String keyword
+		ProjectVO[] ar = null;
+		SqlSession ss = FactoryService.getFactory().openSession();
+		Map<String, String> map = new HashMap<>();
+		map.put("c_title", c_title);
+		map.put("keyword", keyword);
+		map.put("c_content", keyword);
+		map.put("c_titCon", keyword);
+		
+		List<ProjectVO> list = ss.selectList("project.search", map);
+		
+		if(list != null && list.size() > 0) {
+			ar = new ProjectVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+		
+	}*/
 	
 }

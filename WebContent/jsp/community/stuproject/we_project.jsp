@@ -6,7 +6,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%    
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	String c_value = request.getParameter("c_value");
+	String keyword = request.getParameter("keyword");
+	
+	
+	
 	MemberVO mvo = null;
 	Object obj = session.getAttribute("mvo");
 	if(obj != null){
@@ -61,12 +68,31 @@ int numPerPage = 6;//한 페이지당 보여질 게시물의 수
 int pagePerBlock = 5; //페이지 묶음(한블럭당 5개 )
 int totalPage = 0; //총 페이지 수
 
-totalRecord = ProjectDAO.getTotalCount();
+if(mvo != null && mvo.getM_TYPE().equals("0")){
+	String m_type = "1";
+	m_type = mvo.getM_TYPE();
+	if(c_value != null && keyword != null  && !keyword.equals("")){
+		totalRecord = ProjectDAO.sGetTotalCount(m_type, c_value, keyword);	
+	}else{
+		totalRecord = ProjectDAO.getTotalCount(m_type);
+	}
+}else{
+	String m_type = "1";
+	if(c_value != null && keyword != null  && !keyword.equals("")){
+		totalRecord = ProjectDAO.sGetTotalCount(m_type, c_value, keyword);	
+	}else{
+		totalRecord = ProjectDAO.getTotalCount(m_type);
+	}
+}
 
 //math 클래스에 ceil 함수는 결과인 소숫점을 가장 가까운 높은수로 올림한다 
 totalPage = (int) Math.ceil((double) totalRecord / numPerPage);
 
 String c_page = request.getParameter("cPage");
+System.out.println("c_page="+c_page);
+System.out.println("c_value="+c_value);
+System.out.println("keyword="+keyword);
+
 if (c_page != null) {
 	nowPage = Integer.parseInt(c_page);
 }
@@ -98,15 +124,21 @@ if (nowPage > totalPage) {
 						<%
 							}
 						%>
-						<div class="select_type1 w160">
-							<div class="select_type1_1">
-								<select>
-									<option value="">제목</option>
-									<option value="">내용</option>
-									<option value="">제목+내용</option>
-								</select>
+						<form action="we_project.jsp" name="searchForm" method="post">
+							<div class="select_type1 w160">
+								<div class="select_type1_1">
+									<select name="c_value">
+										<option value="0">제목</option>
+										<option value="1">내용</option>
+										<option value="2">제목+내용</option>
+									</select>
+								</div>
 							</div>
-						</div><input type="text" class="search_input" /><a href="#" class="search_btn">검색</a>
+							<input type="text" id="keyword" name="keyword" class="search_input" />
+							
+							
+							<a href="#" class="search_btn" onclick="goSearch()" >검색</a>
+						</form>
 					</div>
 					
 					<ul class="board_list">
@@ -120,8 +152,19 @@ if (nowPage > totalPage) {
 	
 						int end = begin + numPerPage - 1;
 						//총 게시물의 수
-						ProjectVO[] ar = ProjectDAO.projectList(begin, end, m_type); //현재페이지 값을 받아야 begin과 end 값을 구할수 있다
-	
+						//ProjectVO[] ar = ProjectDAO.projectList(begin, end, m_type); //현재페이지 값을 받아야 begin과 end 값을 구할수 있다
+						ProjectVO[] ar = null;
+						if(c_value != null && keyword != null  && !keyword.equals("")){
+							//System.out.println("c_title="+c_title);
+							//System.out.println("keyword="+keyword);
+							 ar = ProjectDAO.sProjectList(begin, end, m_type, c_value, keyword);
+							//if(ar != null)
+							//System.out.println(ar[0].getC_title());
+						}else{
+						
+						 	ar = ProjectDAO.projectList(begin, end, m_type);
+						}
+						
 						if (ar != null && ar.length > 0) {
 							for (int i = 0; i < ar.length; i++) {
 								ProjectVO pvo = ar[i];
@@ -193,7 +236,7 @@ if (nowPage > totalPage) {
 						}else{
 				%>
 						<%-- <li><a href="list.jsp?cPage=<%=i%>"><%=i %></a></li> --%>
-						<span style='color:#91B7EF;font-weight:bold'><a href="we_project.jsp?cPage=<%=i %>"><%=i %></a></span>&nbsp;
+						<span style='color:#91B7EF;font-weight:bold'><a href="javascript:list(<%=i %>)"><%=i %></a></span>&nbsp;
 				<%			
 						}
 					}
@@ -223,7 +266,9 @@ if (nowPage > totalPage) {
 	<jsp:include page="/jsp/common/footer.jsp"></jsp:include>
 
 <form name="frm" method="post">
-	<input type="hidden" name="nowPage" value="1"/>
+	<input type="hidden" name="cPage" value="1"/>
+	<input type="hidden" name="c_value" value="<%=c_value%>"/>	
+	<input type="hidden" name="keyword" value="<%=keyword%>"/>
 	<input type="hidden" name="seq"/> 
 </form>
 
@@ -236,14 +281,24 @@ if (nowPage > totalPage) {
 </script>
 <!-- //script select -->
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	function list(p){
-		document.frm.nowPage.value = p;
+		document.frm.cPage.value = p;
 		document.frm.action = "we_project.jsp";
 		document.frm.submit();
 	}
-</script> -->
+</script>
 
+<script type="text/javascript">
+	function goSearch(){
+		
+		var keyword = $("#keyword");
+		
+		
+		document.searchForm.submit();
+		
+	}
+</script>
 
 </body>
 </html>

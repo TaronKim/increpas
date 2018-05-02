@@ -29,23 +29,68 @@
 		select * from (
 			select rownum r_num, a.* from(
 				select * from cmty_t
-				<if test="m_type == 0">
-				where c_status = 0 AND c_category = 2
-				</if>
-				<if test="m_type != 0">
 				where c_category = 2
+				<if test="m_type != 0">
+					AND c_status = 0
 				</if>
 				order by c_idx desc
 			) a
 		) where r_num BETWEEN #{begin} AND #{end}
 	</select>
-
+	
+	<!-- 검색 게시물 select -->
+	<select id="sProjectList" parameterType="java.util.Map" resultMap="map1">
+		select * from (
+			select rownum r_num, a.* from(
+				select * from cmty_t
+				where c_category = 2 
+				<if test="m_type != 0">
+					AND c_status = 0 
+				</if>
+				<choose>
+					<when test="c_value == 0">
+					AND c_title LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="c_value == 1">
+					AND c_content LIKE '%'||#{keyword}||'%'
+					</when>
+					<otherwise>
+					AND c_title LIKE '%'||#{keyword}||'%' OR  c_content LIKE '%'||#{keyword}||'%'
+					</otherwise>
+				</choose>
+				order by c_idx desc
+			) a
+		) where r_num BETWEEN #{begin} AND #{end}
+	</select>
 	
 	<!-- 전체 게시물의 수(count) -->
-	<select id="totalCount" resultType="int">
+	<select id="totalCount" parameterType="java.util.Map" resultType="int">
 		select count(*)
 		from cmty_t
-		where c_status = 0 AND c_category = 2
+		where c_category = 2
+		<if test="m_type != 0">
+		AND	c_status = 0
+		</if>
+	</select>
+	
+	<!-- 검색 게시물의 수(count) -->
+	<select id="sTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from cmty_t
+		where c_category = 2
+		<if test="m_type != 0">
+			AND c_status = 0 
+		</if>
+		<choose>
+			<when test="c_value == 0">
+			AND c_title LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="c_value == 1">
+			AND c_content LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+			AND c_title LIKE '%'||#{keyword}||'%' OR  c_content LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 원글 저장 -->
@@ -75,5 +120,5 @@
   		SET c_status = 1
   		WHERE c_idx = #{c_idx}
 	</update>
-	
+
 </mapper>
