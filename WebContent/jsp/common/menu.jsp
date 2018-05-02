@@ -68,7 +68,7 @@
 			<a href="<%=request.getContextPath() %>/jsp/community/story/we_story.jsp">우리들의이야기</a><a href="<%=request.getContextPath() %>/jsp/community/stuproject/we_project.jsp?">교육생프로젝트</a><a href="we_study.inc">스터디자료</a>
 		</div>
 		<div class="sub_1">
-			<a href="job_process.inc">취업지원절차</a><a href="job_present.inc">취업현황</a><a href="job_offer.inc">채용및구인의뢰</a>
+			<a href="job_process.inc">취업지원절차</a><a href="<%=request.getContextPath() %>/jsp/job/job_present.jsp">취업현황</a><a href="job_offer.inc">채용및구인의뢰</a>
 		</div>
 	</div>
 </div>   
