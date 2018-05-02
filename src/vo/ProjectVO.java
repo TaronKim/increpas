@@ -1,6 +1,6 @@
 package vo;
 
-public class ProjectVO {
+public class ProjectVO { 
 	private String c_idx,//글번호
     				c_writedate,//글작성일
     				c_title,//글제목

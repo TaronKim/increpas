@@ -14,7 +14,6 @@
   </environments>
   <mappers>
   	<mapper resource="mapper/project.xml"/>
-    <mapper resource="mapper/study.xml"/>
     <mapper resource="mapper/comm.xml"/>
     <mapper resource="mapper/mem.xml"/>
   </mappers>

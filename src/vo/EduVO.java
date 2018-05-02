@@ -1,6 +1,6 @@
 package vo;
 
-public class EduVO {
+public class EduVO { 
 	private String e_idx,
 					e_writedate,
 					e_startdate,
