@@ -16,6 +16,7 @@
   	<mapper resource="mapper/project.xml"/>
     <mapper resource="mapper/comm.xml"/>
     <mapper resource="mapper/mem.xml"/>
+    <mapper resource="mapper/job.xml"/>
   </mappers>
 </configuration>
 

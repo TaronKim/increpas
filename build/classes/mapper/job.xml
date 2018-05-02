@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="job">
+
+   <!-- ???? -->
+   <resultMap type="vo.JobVO" id="map">
+      <id property="j_idx" column="j_idx"/>      
+   </resultMap>
+
+   <select id="jobList"  resultType="vo.JobVO"> 
+   SELECT * FROM (
+         SELECT rownum r_num, a.* FROM (
+            SELECT * FROM job_t
+            WHERE j_status = 0
+             <if test="m_type == 0">
+            or j_status = 1
+            </if>
+            ORDER BY j_idx DESC
+         ) a
+      )WHERE r_num BETWEEN #{begin} AND #{end}
+   </select>
+   
+ 
+      
+   <!--  삭제  -->
+   <update id="delJob" parameterType="java.util.Map">
+      UPDATE job_t
+      SET j_status = 1
+      WHERE j_idx=#{j_idx} 
+   </update>
+   
+   <!--  삭제취소 -->
+   <update id="restore" parameterType="java.util.Map">
+   	  UPDATE job_t
+      SET j_status = 0
+      WHERE j_idx=#{j_idx}    
+   </update>
+   
+   
+   <!--수정  -->
+   <update id="editJob" parameterType="java.util.Map">
+      UPDATE job_t
+      SET j_title=#{j_title},
+    	  j_hiredate=TO_DATE(#{j_hiredate},'YYYY-MM-DD'),                 
+         j_company=#{j_company},
+         j_student_name=#{j_student_name},
+         j_location=#{j_location},  
+         j_birth=#{j_birth},
+         j_process=#{j_process}          
+               
+      WHERE j_idx=#{j_idx}
+   </update>  
+   
+   
+   <select id="totalCount" resultType="int">
+      SELECT COUNT(*) FROM job_t
+      WHERE j_status = 0
+   </select>
+   
+   
+   <!-- 게시물 번호 -->
+   <select id="totalCountAdmin" resultType="int">
+      SELECT COUNT(*) FROM job_t
+   </select>
+   
+   
+   <select id="getJob" parameterType="String" resultMap="map">
+      SELECT * FROM job_t
+      WHERE j_idx = #{j_idx}
+   </select>   
+   
+         
+   <insert id="add" parameterType="java.util.Map">
+      INSERT INTO job_t(j_idx, j_title,  j_writedate,
+         m_id, j_hiredate, j_company,j_status, j_student_name, j_location, j_birth,j_process)
+      VALUES(seq_job.NEXTVAL, #{j_title}, sysdate,
+         'admin', #{j_hiredate}, #{j_company}, 0, #{j_student_name},#{j_location}, #{j_birth}, 
+         #{j_process})
+   </insert>
+   
+   
+</mapper>  
+
+
+
+
+

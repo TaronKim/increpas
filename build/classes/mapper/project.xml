@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="project">
+	
+	<resultMap type="vo.ProjectVO" id="map1">
+		<association property="evo" javaType="vo.EduVO" select="searchEdu" column="e_idx" ></association>
+	</resultMap>
+	
+	<select id="searchEdu" parameterType="String" resultType="vo.EduVO">
+		select * from edu_t
+		where e_idx = #{e_idx}
+	</select>
+	
+	<select id="projectView" parameterType="String" resultType="vo.ProjectVO">
+		select * from cmty_t
+		where c_idx = #{n}
+	</select>	
+	
+	<!-- 교육과정정보 검색하는 select -->
+	<select id="getEdu" resultType="vo.EduVO">
+		select * from edu_t
+	</select>
+	
+	<!-- 전체 게시물 select -->
+	<select id="projectList" parameterType="java.util.Map" resultMap="map1">
+		select * from (
+			select rownum r_num, a.* from(
+				select * from cmty_t
+				<if test="m_type == 0">
+				where c_status = 0 AND c_category = 2
+				</if>
+				<if test="m_type != 0">
+				where c_category = 2
+				</if>
+				order by c_idx desc
+			) a
+		) where r_num BETWEEN #{begin} AND #{end}
+	</select>
+
+	
+	<!-- 전체 게시물의 수(count) -->
+	<select id="totalCount" resultType="int">
+		select count(*)
+		from cmty_t
+		where c_status = 0 AND c_category = 2
+	</select>
+	
+	<!-- 원글 저장 -->
+	<insert id="add" parameterType="java.util.Map">
+		INSERT INTO cmty_t(c_idx,  c_writedate, c_title, c_content,
+			c_img, c_category, m_id, c_status, e_idx)
+		VALUES(seq_cmty.NEXTVAL, SYSDATE, #{c_title}, #{c_content},
+			#{c_img}, 2, #{m_id}, 0, #{e_idx})
+	</insert>
+	
+	<!-- 원글 수정 -->
+	<update id="projectUpdate" parameterType="java.util.Map">
+		update cmty_t
+		<set> c_title=#{c_title},
+			  c_content=#{c_content}
+			  <if test="c_img != null">
+				  ,c_img=#{c_img}
+			  </if>
+			  ,e_idx=#{e_idx}
+		</set>	  
+		where c_idx = #{c_idx}
+	</update>
+	
+	<!-- 원글 삭제 -->
+	<update id="projectDelete" parameterType="String">
+  		UPDATE cmty_t
+  		SET c_status = 1
+  		WHERE c_idx = #{c_idx}
+	</update>
+	
+</mapper>
