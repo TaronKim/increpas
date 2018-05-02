@@ -218,6 +218,11 @@ transition: all 0.3s ease;
 .search_area {text-align:right; padding-top:21px; padding-bottom:25px;}
 .search_input {width: 70%; max-width:173px; height:32px; padding-left:10px; line-height:32px;border:1px solid #c6c6c6; margin-right:5px;}
 .search_area a.search_btn {display:inline-block; vertical-align:top; width:47px; height:34px; text-align:center; line-height:34px; background:#009add; border-radius:3px; font-size:14px; color:#fff;}
+/*key*/
+.btn_write{display: inline-block;vertical-align: top;width: 47px;height: 34px;text-align: center;line-height: 34px;background: #009add;
+border-radius: 3px;font-size: 14px;color: #fff;}
+.input_style{border: 1px solid #ccc;padding: 5px;width: 400px;border-radius: 5px;}
+/*//key*/
 
 /*180502*/
 .sub_tab .s_left{float:left;}

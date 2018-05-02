@@ -20,7 +20,7 @@ String c_page = request.getParameter("cPage");
       
       <script src="../../js/jquery-1.10.2.min.js" charset="utf-8"></script>
       <script type="text/javascript" src="../../js/main.js"></script>
-      <script type="text/javascript" src="../../js/jquery.min.js"></script>
+      <!-- <script type="text/javascript" src="../../js/jquery.min.js"></script> -->
       <script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
       <script src="../../js/slickcustomscroll.js"></script>      
       <script type="text/javascript">    
@@ -40,7 +40,7 @@ String c_page = request.getParameter("cPage");
             <div class="main_con">
                <div class="sub_layout">
                   <div class="location">
-                     <a><img src="images/home.jpg" alt="인크레파스 고객센터" /></a><span>고객센터</span><span>취업현황</span>
+                     <a><img src="<%=request.getContextPath() %>/images/home.jpg" alt="인크레파스 고객센터" /></a><span>고객센터</span><span>취업현황</span>
                   </div>	
                   <div class="sub_box1">
                      <div class="sub_layout2">
@@ -60,33 +60,33 @@ String c_page = request.getParameter("cPage");
                               <tbody>
                               <tr>
                                     <th>제목 </th>
-                                    <td><input type="text" id="j_title" name="u_title"></td>
+                                    <td><input type="text" class="input_style" id="j_title" name="u_title"></td>
                                  </tr>
                                  
                                  
                                  <tr>
                                     <th>교육생 명 </th>
-                                    <td><input type="text" id="j_name" name="u_name"></td>
+                                    <td><input type="text" class="input_style" id="j_name" name="u_name"></td>
                                  </tr>
                                  <tr>
                                     <th>생년</th>
-                                    <td><input type="text" id="j_birth" name="u_birth"></td>
+                                    <td><input type="text" class="input_style" id="j_birth" name="u_birth"></td>
                                  </tr>
                                  <tr>
                                     <th>과정명</th>
-                                    <td><input type="text" id="j_process" name="u_process"></td>
+                                    <td><input type="text" class="input_style" id="j_process" name="u_process"></td>
                                  </tr>
                                  <tr>
                                     <th>회사명</th>
-                                    <td><input type="text" id="j_company" name="u_company"></td>
+                                    <td><input type="text" class="input_style" id="j_company" name="u_company"></td>
                                  </tr>
                                  <tr>
                                     <th>근무지역</th>
-                                    <td><input type="text" id="j_location" name="u_location"></td>
+                                    <td><input type="text" class="input_style" id="j_location" name="u_location"></td>
                                  </tr>
                                  <tr>
                                     <th>입사일</th>
-                                    <td><input type="text" id="j_hiredate" name="u_hiredate"></td>
+                                    <td><input type="text" class="input_style" id="j_hiredate" name="u_hiredate"></td>
                                  </tr>
                               </tbody>
                            </table>
@@ -95,7 +95,7 @@ String c_page = request.getParameter("cPage");
                          
                       <div class="bo_btn">
                       <a href="job_present.jsp?cPage=<%=c_page%>">목록</a>
-                       <a><input type="button" value="저장" onclick="sendData()"/></a>
+                      <a href="javascript:sendData()">저장</a>
                       </div>
                    		
                    
@@ -117,7 +117,7 @@ String c_page = request.getParameter("cPage");
           
           function sendData(){
               
-              if(document.forms[0].u_process.value == ""){
+              if(document.forms[0].u_title.value == ""){
                  alert("제목을 입력하세요");
                 document.forms[0].title.focus();
                 return;

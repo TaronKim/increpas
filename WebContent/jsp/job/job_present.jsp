@@ -93,11 +93,6 @@
 	 color:#91B7EF;font-weight:bold
 	   
 	}
-	
-	.btn{
-	font-size: 17px;
-	background-color: white;
-	}
 </style>
 
 
@@ -121,7 +116,7 @@
 						if(mvo != null && mvo.getM_TYPE().equals("0")){
 					%>      
 										                   
-	<span style="float: right"><input   class="btn" type="button" value="글쓰기" onclick="write_bt()"  />	</span>
+					<span  style="float: right"><input class="btn btn_write" type="button" value="글쓰기" onclick="write_bt()" /></span>
 				
 					<%
 						}
@@ -130,11 +125,12 @@
                </div>
                <table class="table1">
                         <colgroup>
-                           <col width="70" class="mo_ver"/>
-                           <col width="*"/>
-                           <col width="90"/>
-                           <col width="130" class="mo_ver"/>
-                           <col width="130" class="mo_ver"/>
+                           <col width="70px" class="mo_ver"/>
+                           <col />
+                           <col width="90px"/>
+                           <col width="130px" class="mo_ver"/>
+                           <col width="95px"/>
+                           <col width="70px"/>
                         </colgroup>
                         
                         <thead>
@@ -215,9 +211,9 @@
                            		%>
                            		<td>
                            			<%if(vo.getJ_status().equals("0")) {
-                           				out.println("");
+                           				out.println("N");
                            			}else{
-                           				out.println("삭제 된 글");
+                           				out.println("Y");
                            			}
                            				%>
                            		</td>
