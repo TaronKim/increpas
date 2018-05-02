@@ -71,14 +71,14 @@ int totalPage = 0; //총 페이지 수
 if(mvo != null && mvo.getM_TYPE().equals("0")){
 	String m_type = "1";
 	m_type = mvo.getM_TYPE();
-	if(c_value != null && keyword != null  && !keyword.equals("")){
+	if(c_value != null && keyword != null  && !keyword.equals("") && !keyword.contains("null")){
 		totalRecord = ProjectDAO.sGetTotalCount(m_type, c_value, keyword);	
 	}else{
 		totalRecord = ProjectDAO.getTotalCount(m_type);
 	}
 }else{
 	String m_type = "1";
-	if(c_value != null && keyword != null  && !keyword.equals("")){
+	if(c_value != null && keyword != null  && !keyword.equals("") && !keyword.contains("null")){
 		totalRecord = ProjectDAO.sGetTotalCount(m_type, c_value, keyword);	
 	}else{
 		totalRecord = ProjectDAO.getTotalCount(m_type);
@@ -89,9 +89,9 @@ if(mvo != null && mvo.getM_TYPE().equals("0")){
 totalPage = (int) Math.ceil((double) totalRecord / numPerPage);
 
 String c_page = request.getParameter("cPage");
-System.out.println("c_page="+c_page);
-System.out.println("c_value="+c_value);
-System.out.println("keyword="+keyword);
+//System.out.println("c_page="+c_page);
+//System.out.println("c_value="+c_value);
+//System.out.println("keyword="+keyword);
 
 if (c_page != null) {
 	nowPage = Integer.parseInt(c_page);
@@ -154,10 +154,10 @@ if (nowPage > totalPage) {
 						//총 게시물의 수
 						//ProjectVO[] ar = ProjectDAO.projectList(begin, end, m_type); //현재페이지 값을 받아야 begin과 end 값을 구할수 있다
 						ProjectVO[] ar = null;
-						if(c_value != null && keyword != null  && !keyword.equals("")){
+						if(c_value != null && keyword != null  && !keyword.equals("") && !keyword.contains("null")){
 							//System.out.println("c_title="+c_title);
 							//System.out.println("keyword="+keyword);
-							 ar = ProjectDAO.sProjectList(begin, end, m_type, c_value, keyword);
+							ar = ProjectDAO.sProjectList(begin, end, m_type, c_value, keyword);
 							//if(ar != null)
 							//System.out.println(ar[0].getC_title());
 						}else{
@@ -236,7 +236,7 @@ if (nowPage > totalPage) {
 						}else{
 				%>
 						<%-- <li><a href="list.jsp?cPage=<%=i%>"><%=i %></a></li> --%>
-						<span style='color:#91B7EF;font-weight:bold'><a href="javascript:list(<%=i %>)"><%=i %></a></span>&nbsp;
+						<span style='color:#91B7EF;font-weight:bold'><a href="javascript:list('<%=i %>')"><%=i %></a></span>&nbsp;
 				<%			
 						}
 					}
