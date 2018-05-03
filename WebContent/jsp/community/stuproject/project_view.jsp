@@ -96,7 +96,7 @@
 						if(mvo != null && mvo.getM_TYPE().equals("0")){
 					%>
 						<a href="project_update.jsp?c_idx=<%=c_idx %>&cPage=<%=cPage%>&e_idx=<%=pvo.getE_idx()%>&category=<%=pvo.getC_category()%>">수정</a>
-						<a href="delete_ok.jsp?c_idx=<%=c_idx%>&cPage=<%=cPage%>">삭제</a>
+						<a href="#" class="btn_del">삭제</a>
 					<%
 						}
 					%>
@@ -104,6 +104,16 @@
 					</div>
 				</div>
 				
+				<div class="pop_cont">
+					<strong>alert</strong>
+					<div class="inner">	
+						<p>정말 삭제 하시겠습니까?</p>
+						<div class="btn_area">
+							<a href="delete_ok.jsp?c_idx=<%=c_idx%>&cPage=<%=cPage%>">삭제</a>
+							<a href="#" class="d_close">취소</a>
+						</div>
+					</div>
+				</div>
 				<jsp:include page="/jsp/common/right.jsp"></jsp:include>
 			</div>
 		</div>
@@ -116,6 +126,18 @@
 	$(document).ready(function(){
 		$('select').sSelect({ddMaxHeight: '300px'});
 	});
+	
+	$(".btn_del").click(function(){
+		$(".pop_cont").show();
+		return false;
+	});
+	
+	$(".pop_cont .d_close").click(function(){
+		$(".pop_cont").hide();
+		return false;
+	});
+	
+	
 </script>
 
 </body>
