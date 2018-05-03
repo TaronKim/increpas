@@ -65,5 +65,51 @@
   	</if>
   	WHERE c_idx=#{c_idx}
   </update>
-
+  
+  	<!-- 검색 게시물 select -->
+	<select id="scommList" parameterType="java.util.Map" resultType="vo.CommVO">
+		select * from (
+			select rownum r_num, a.* from(
+				select * from cmty_t
+				where c_category = 1 
+				<if test="m_type != 0">
+					AND c_status = 0 
+				</if>
+				<choose>
+					<when test="c_value == 0">
+					AND c_title LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="c_value == 1">
+					AND c_content LIKE '%'||#{keyword}||'%'
+					</when>
+					<otherwise>
+					AND c_title LIKE '%'||#{keyword}||'%' OR  c_content LIKE '%'||#{keyword}||'%'
+					</otherwise>
+				</choose>
+				order by c_idx desc
+			) a
+		) where r_num BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 검색 게시물의 수(count) -->
+	<select id="sTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from cmty_t
+		where c_category = 1
+		<if test="m_type != 0">
+			AND c_status = 0 
+		</if>
+		<choose>
+			<when test="c_value == 0">
+			AND c_title LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="c_value == 1">
+			AND c_content LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+			AND c_title LIKE '%'||#{keyword}||'%' OR  c_content LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</select>
+	
+	
 </mapper>

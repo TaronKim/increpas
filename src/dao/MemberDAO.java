@@ -25,66 +25,97 @@ public class MemberDAO {
 
 	}
 	
-	public static  MemberVO[] search(String m_name) {
-		MemberVO[] ar = null;
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<MemberVO> list = ss.selectList("member.search",m_name);
-		
-		if(list != null && list.size() > 0) {
-			ar = new MemberVO[list.size()];
-			
-			list.toArray(ar);
+	// 전체 회원검색
+		public static MemberVO[] search2(int begin, int end) {
+			MemberVO[] ar = null;
+
+			SqlSession ss = FactoryService.getFactory().openSession();
+			Map<String, Object> map = new HashMap<>();
+			map.put("begin", begin);
+			map.put("end", end);
+
+			List<MemberVO> list = ss.selectList("member.all_search", map);
+			if (list != null && list.size() > 0) {
+				ar = new MemberVO[list.size()];
+				list.toArray(ar);
+			}
+
+			ss.close();
+
+			return ar;
 		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	public static  MemberVO[] search() {
-		MemberVO[] ar = null;
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<MemberVO> list = ss.selectList("all_search");
-		
-		if(list != null && list.size() > 0) {
-			ar = new MemberVO[list.size()];
-			
-			list.toArray(ar);
+
+		// 전체회원의 수를 반환하는 기능
+		public static int getTotalCount() {
+			SqlSession ss = FactoryService.getFactory().openSession();
+
+			int cnt = ss.selectOne("member.totalCount");
+			ss.close();
+			return cnt;
 		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	
-	public static boolean delMem(String m_id, String m_status) {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		boolean value = false; // 반환값
 
-		if(m_status.equals("0")) {
-			m_status = "1";
-		}else 
-			m_status = "0";
-		
-		HashMap<String, String> map = new HashMap<>();
-		map.put("m_id", m_id);
-		map.put("m_status", m_status);
+		// 검색값 받아 회원검색
+		public static MemberVO[] search(int begin, int end, String c_value, String keyword) {
+			MemberVO[] ar = null;
 
-		
-		int cnt = ss.update("member.delMem", map);
-		
-		
-		if (cnt > 0) {
-			ss.commit();
-			value = true;
-		} else
-			ss.rollback();
+			SqlSession ss = FactoryService.getFactory().openSession();
+			Map<String, Object> map = new HashMap<>();
+			map.put("begin", begin);
+			map.put("end", end);
+			map.put("c_value", c_value);
+			map.put("keyword", keyword);
 
-		ss.close();
+			List<MemberVO> list = ss.selectList("member.search", map);
 
-		return value;
-	}
+			if (list != null && list.size() > 0) {
+				ar = new MemberVO[list.size()];
+
+				list.toArray(ar);
+			}
+			ss.close();
+
+			return ar;
+		}
+
+		// 검색한 회원의 수 반환
+		public static int sGetTotalCount(String c_value, String keyword) {
+
+			SqlSession ss = FactoryService.getFactory().openSession();
+			Map<String, String> map = new HashMap<>();
+			map.put("c_value", c_value);
+			map.put("keyword", keyword);
+			int cnt = ss.selectOne("member.sTotalCount", map);
+			ss.close();
+			return cnt;
+
+		}
+
+		// 회원 삭제
+		public static boolean delMem(String m_id, String m_status) {
+			SqlSession ss = FactoryService.getFactory().openSession();
+			boolean value = false; // 반환값
+
+			if (m_status.equals("0")) {
+				m_status = "1";
+			} else
+				m_status = "0";
+
+			HashMap<String, String> map = new HashMap<>();
+			map.put("m_id", m_id);
+			map.put("m_status", m_status);
+
+			int cnt = ss.update("member.delMem", map);
+
+			if (cnt > 0) {
+				ss.commit();
+				value = true;
+			} else
+				ss.rollback();
+
+			ss.close();
+
+			return value;
+		}
 	
 	
 	//교육정보 리스트 가져오기

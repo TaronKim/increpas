@@ -8,15 +8,57 @@
 		WHERE m_id = #{m_id} AND m_pw = #{m_pw}
 	</select>
 
-	<!-- 회원 검색 -->
-	<select id="all_search" resultType="vo.MemberVO">
+	<!-- 회원 검색 전체 목록 -->
+	<select id="all_search" parameterType="java.util.Map" resultType="vo.MemberVO">
+		SELECT * FROM (
+		SELECT rownum AS r_num, a.* FROM (
 		SELECT * FROM mem_t
+		<!-- ORDER BY c_idx DESC -->
+		) a
+		) WHERE r_num BETWEEN #{begin} AND #{end}
 	</select>
 	
-	<!-- 이름으로 회원 검색 -->
-	<select id="search" resultType="vo.MemberVO" parameterType="String">
-		SELECT * FROM mem_t
-		WHERE m_name like '%' || #{m_name} || '%'
+	<!-- 검색 게시물 select -->
+	<select id="search" parameterType="java.util.Map" resultType="vo.MemberVO">
+		select * from (
+		select rownum r_num, a.* from(
+		select * from mem_t
+		<choose>
+			<when test="c_value == 0">
+				where m_name LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="c_value == 1">
+				where m_id LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				where m_email LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+		<!-- order by c_idx desc -->
+		) a
+		) where r_num BETWEEN #{begin} AND #{end}
+	</select> 
+
+	<!-- 사용자가 목록을 가져오기 위해 전체 회원의 수를 알아야 한다. -->
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM mem_t
+	</select>
+
+	<!-- 검색 게시물의 수(count) -->
+	<select id="sTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from mem_t
+
+		<choose>
+			<when test="c_value == 0">
+				where m_name LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="c_value == 1">
+				where m_id LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				where m_email LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 회원 삭제/복구 -->
