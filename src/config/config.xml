@@ -17,6 +17,8 @@
     <mapper resource="mapper/comm.xml"/>
     <mapper resource="mapper/mem.xml"/>
      <mapper resource="mapper/job.xml"/>
+     <mapper resource="mapper/edu.xml"/>
+      <mapper resource="mapper/yeyak.xml" />
   </mappers>
 </configuration>
 
