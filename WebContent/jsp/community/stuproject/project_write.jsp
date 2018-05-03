@@ -89,7 +89,7 @@
 													if(ar != null){
 														for(EduVO vo : ar){
 												%>
-													<option value="<%=vo.getE_idx()%>"><%=vo.getE_title() %></option>
+													<option value="<%=vo.getE_IDX()%>"><%=vo.getE_TITLE()%></option>
 												<%
 														}//end of for
 													}//end of if 

@@ -1,6 +1,21 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Set"%>
+<%@page import="vo.EduVO"%>
+<%@page import="dao.eduDAO"%>
+<%@page import="vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%    
+	MemberVO mvo = null;
+	Object obj = session.getAttribute("mvo");
+	if(obj != null){
+		mvo = (MemberVO)obj;
+	}
+%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,26 +23,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련">
+<meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련"/>
 <title>인크레파스: 국비무료 취업과정</title>
 <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
 <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
-
 <script src="../../js/jquery-1.10.2.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../../js/main.js"></script>
-
 <!--[if lt IE 9]>
 <script src="js/html5shiv.min.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
-
-
 <script type="text/javascript" src="../../js/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
-
 <script src="../../js/slickcustomscroll.js"></script>
-
-
 <script type="text/javascript">
     $( document ).ready( function() {
         $( "div[rel='scrollcontent1']" ).customscroll( { direction: "vertical" } );
@@ -63,7 +71,7 @@
 	<div class="main_con">
 		<div class="sub_layout">
 			<div class="location">
-				<a><img src="images/home.jpg" alt="인크레파스 교육과정"></a><span>교육과정</span><span>국비무료취업과정</span>
+				<a><img src="<%=request.getContextPath() %>/images/home.jpg"></a><span>교육과정</span><span>국비무료취업과정</span>
 			</div>
 			<div class="sub_box1">
 				<div class="sub_layout2">
@@ -72,6 +80,17 @@
 						<p>인크레파스는 고용노동부 지정 직업능력개발훈련시설로서 정부가 지원하는 국비지원 교육(국가기간전략산업직종훈련, 국가전략)을 진행하고 있습니다.</p>
 					</div>
 					<div class="search_area">
+						
+						<%
+						if(obj != null){
+						if(mvo.getM_TYPE().equals("0")){
+						%>
+							<div class="button"><a href="<%=request.getContextPath()%>/jsp/edu/gov_write.jsp" class="write_btn">글쓰기</a></div>
+						<%
+						}
+						}
+						%>
+					
 						<form method="post">
 						    <input type="hidden" name="code" id="c_code"> 
 							<div class="select_type1  w160">
@@ -86,41 +105,116 @@
 						</form>
 					</div>
 					<div class="sub_tab marmT33">
-						<span class="on" id="tab1" style="cursor: pointer;"><a>국가기간</a></span><span id="tab2" style="cursor: pointer;"><a>계좌제</a></span>
+						<span class="on" id="tab1" style="cursor: pointer;" ><a>국가기간</a></span><span id="tab2" style="cursor: pointer;"><a>계좌제</a></span>
 					</div>
 					<div id="table1">
 						<table class="table1">
 							<colgroup>
-								<col width="70">
-								<col width="*">
-								<col width="70">
+								<col width="70"/>
+								<col width="*"/>
+								<col width="70"/>
 							</colgroup>
-							<tbody>
-								<tr>
-									<td><img src="http://increpas.com/ems/upload/thumbnail/Thumb_Java_AI_20180201.JPG" alt=""></td>
-									<th><a href="view_course.inc?num=20">자바머신러닝기반 응용SW엔지니어 양성과정</a><p>개강일 :2018-04-26</p></th>
-									<td>
-										
-									</td>
-								</tr>
-							
-								<tr>
-									<td><img src="http://increpas.com/ems/upload/thumbnail/Thumb_Increpas_Java_Arduino_IoT_20180201.jpg" alt=""></td>
-									<th><a href="view_course.inc?num=18">자바 개발 교육 &amp; 아두이노를 활용한 사물인터넷 (IoT) 엔지니어 양성 과정</a><p>개강일 :2018-05-24</p></th>
-									<td>
-										
-									</td>
-								</tr>
-							
-								<tr>
-									<td><img src="http://increpas.com/ems/upload/thumbnail/" alt=""></td>
-									<th><a href="view_course.inc?num=21">자바 개발 교육 &amp; 아두이노를 활용한 사물인터넷 (IoT) 엔지니어 양성 과정</a><p>개강일 :2018-06-27</p></th>
-									<td>
+							 <tbody>
+							 	<%	
+								EduVO[] ar = eduDAO.getList();
+							 	int cnt = 0;
+							 	Date keyStartDate; // 삭제 시작일
+							 	Date currentDate; // 현재날짜 Date
+							 	String oTime = ""; // 현재날짜
+							 	String compareVal = "N";
+							 	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+							 	Date currentTime = new Date();
+							 	oTime = mSimpleDateFormat.format ( currentTime ); //현재시간 (String)
+							 	if(obj != null){	
+							 	if(ar != null && ar.length > 0){
+										for(EduVO evo : ar){
+											
+											if(mvo.getM_TYPE().equals("0")){
+												cnt++;
+												if(evo.getE_STATUS().equals("1")){
+												%>
+												<tr>
+													<td><img src="<%=request.getContextPath()%>/jsp/edu/gov_upload/<%=evo.getE_IMG()%>" width="70px" height="auto" alt=""/></td>
+													<th><a href="<%=request.getContextPath()%>/jsp/edu/gov_view.jsp?E_IDX=<%=evo.getE_IDX()%>"><%=evo.getE_TITLE()%></a><p>개강일 :<%=evo.getE_STARTDATE().substring(0,10)%></p></th>
+													<td>삭제된 글입니다.</td>
+												</tr>	
+												<%
+												}else{
+													keyStartDate = mSimpleDateFormat.parse(evo.getE_STARTDATE());
+													currentDate =  mSimpleDateFormat.parse( oTime );
+													int compare = currentDate.compareTo(keyStartDate);
+													if(compare > 0){
+													%>
+													<tr>
+													<td><img src="<%=request.getContextPath()%>/jsp/edu/gov_upload/<%=evo.getE_IMG()%>" width="70px" height="auto" alt=""/></td>
+													<th><a href="<%=request.getContextPath()%>/jsp/edu/gov_view.jsp?E_IDX=<%=evo.getE_IDX()%>"><%=evo.getE_TITLE()%></a><p>개강일 :<%=evo.getE_STARTDATE().substring(0,10)%></p></th>
+													<td>개강일이 초과된 글입니다.</td>
+													</tr>	
+													<%
+													}else{
+														%>
+														<tr>
+														<td><img src="<%=request.getContextPath()%>/jsp/edu/gov_upload/<%=evo.getE_IMG()%>" width="70px" height="auto" alt=""/></td>
+														<th><a href="<%=request.getContextPath()%>/jsp/edu/gov_view.jsp?E_IDX=<%=evo.getE_IDX()%>"><%=evo.getE_TITLE()%></a><p>개강일 :<%=evo.getE_STARTDATE().substring(0,10)%></p></th>
+														<td></td>
+														</tr>
+														<%
+													}
+												}
+											}else{
+												keyStartDate = mSimpleDateFormat.parse(evo.getE_STARTDATE());
+												currentDate =  mSimpleDateFormat.parse( oTime );
+												int compare = currentDate.compareTo(keyStartDate);
+												if(evo.getE_CATEGORY().equals("1") && evo.getE_STATUS().equals("0") && compare <= 0){
+													cnt++;
+													%>
+													<tr>
+													<td><img src="<%=request.getContextPath()%>/jsp/edu/gov_upload/<%=evo.getE_IMG()%>" width="70px" height="auto" alt=""/></td>
+													<th><a href="<%=request.getContextPath()%>/jsp/edu/gov_view.jsp?E_IDX=<%=evo.getE_IDX()%>"><%=evo.getE_TITLE()%></a><p>개강일 :<%=evo.getE_STARTDATE().substring(0,10)%></p></th>
+													<td>
+													</td>
+													</tr>
+													<%
+												}
+											}
+										}
+									}
+							 	
 									
-									</td>
-								</tr>
-							</tbody>
+									if(cnt == 0){
+										%>
+									<tr>
+										<td colspan="3" class="empty">
+											현재 등록된 국비지원(국가기간)과정이 없습니다.
+										</td>
+									</tr>
+									<%
+									
+									}
+							 	}else if(obj == null){
+							 		if(ar != null && ar.length > 0){
+										for(EduVO evo : ar){
+											keyStartDate = mSimpleDateFormat.parse(evo.getE_STARTDATE());
+											currentDate =  mSimpleDateFormat.parse( oTime );
+											int compare = currentDate.compareTo(keyStartDate);
+											if(evo.getE_CATEGORY().equals("1") && evo.getE_STATUS().equals("0") && compare <= 0){
+												cnt++;
+												%>
+												<tr>
+												<td><img src="<%=request.getContextPath()%>/jsp/edu/gov_upload/<%=evo.getE_IMG()%>" width="70px" height="auto" alt=""/></td>
+												<th><a href="<%=request.getContextPath()%>/jsp/edu/gov_view.jsp?E_IDX=<%=evo.getE_IDX()%>"><%=evo.getE_TITLE()%></a><p>개강일 :<%=evo.getE_STARTDATE().substring(0,10)%></p></th>
+												<td>
+												</td>
+												</tr>
+												<%
+											}
+										}
+							 		}
+							 	}
+									%>
+							</tbody> 
 						</table>
+
 					</div>
 					<div id="table2" class="none">
 						<table class="table1">
@@ -136,12 +230,14 @@
 								</tr>
 							</tbody>
 						</table>
-					</div>
-					<div class="paging">
 
 					</div>
+					<div class="paging">
+						
+					</div>
+					
 				</div>
-				
+
 				<jsp:include page="../../jsp/common/right.jsp"></jsp:include>
 			</div>
 		</div>

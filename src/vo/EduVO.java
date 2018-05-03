@@ -1,87 +1,95 @@
 package vo;
 
-public class EduVO { 
-	private String e_idx,
-					e_writedate,
-					e_startdate,
-					e_enddate,
-					e_title,
-					e_content,
-					e_img,
-					e_category,
-					e_status;
+public class EduVO {
+	private String
+	E_IDX,
+	E_WRITEDATE,
+	E_STARTDATE,
+	E_ENDDATE,
+	E_TITLE,
+	E_CONTENT,
+	E_IMG,
+	E_CATEGORY,
+	E_STATUS,
+	E_IMG_S;
 
-	public String getE_idx() {
-		return e_idx;
+	public String getE_IMG_S() {
+		return E_IMG_S;
 	}
 
-	public void setE_idx(String e_idx) {
-		this.e_idx = e_idx;
+	public void setE_IMG_S(String e_IMG_S) {
+		E_IMG_S = e_IMG_S;
 	}
 
-	public String getE_writedate() {
-		return e_writedate;
+	public String getE_IDX() {
+		return E_IDX;
 	}
 
-	public void setE_writedate(String e_writedate) {
-		this.e_writedate = e_writedate;
+	public void setE_IDX(String e_IDX) {
+		E_IDX = e_IDX;
 	}
 
-	public String getE_startdate() {
-		return e_startdate;
+	public String getE_WRITEDATE() {
+		return E_WRITEDATE;
 	}
 
-	public void setE_startdate(String e_startdate) {
-		this.e_startdate = e_startdate;
+	public void setE_WRITEDATE(String e_WRITEDATE) {
+		E_WRITEDATE = e_WRITEDATE;
 	}
 
-	public String getE_enddate() {
-		return e_enddate;
+	public String getE_STARTDATE() {
+		return E_STARTDATE;
 	}
 
-	public void setE_enddate(String e_enddate) {
-		this.e_enddate = e_enddate;
+	public void setE_STARTDATE(String e_STARTDATE) {
+		E_STARTDATE = e_STARTDATE;
 	}
 
-	public String getE_title() {
-		return e_title;
+	public String getE_ENDDATE() {
+		return E_ENDDATE;
 	}
 
-	public void setE_title(String e_title) {
-		this.e_title = e_title;
+	public void setE_ENDDATE(String e_ENDDATE) {
+		E_ENDDATE = e_ENDDATE;
 	}
 
-	public String getE_content() {
-		return e_content;
+	public String getE_TITLE() {
+		return E_TITLE;
 	}
 
-	public void setE_content(String e_content) {
-		this.e_content = e_content;
+	public void setE_TITLE(String e_TITLE) {
+		E_TITLE = e_TITLE;
 	}
 
-	public String getE_img() {
-		return e_img;
+	public String getE_CONTENT() {
+		return E_CONTENT;
 	}
 
-	public void setE_img(String e_img) {
-		this.e_img = e_img;
+	public void setE_CONTENT(String e_CONTENT) {
+		E_CONTENT = e_CONTENT;
 	}
 
-	public String getE_category() {
-		return e_category;
+	public String getE_IMG() {
+		return E_IMG;
 	}
 
-	public void setE_category(String e_category) {
-		this.e_category = e_category;
+	public void setE_IMG(String e_IMG) {
+		E_IMG = e_IMG;
 	}
 
-	public String getE_status() {
-		return e_status;
+	public String getE_CATEGORY() {
+		return E_CATEGORY;
 	}
 
-	public void setE_status(String e_status) {
-		this.e_status = e_status;
+	public void setE_CATEGORY(String e_CATEGORY) {
+		E_CATEGORY = e_CATEGORY;
 	}
-	
-	
+
+	public String getE_STATUS() {
+		return E_STATUS;
+	}
+
+	public void setE_STATUS(String e_STATUS) {
+		E_STATUS = e_STATUS;
+	}
 }

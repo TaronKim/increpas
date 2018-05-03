@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu">
+	<select id="listall" parameterType="String" 
+	resultType="vo.EduVO">
+		SELECT * FROM edu_T
+	</select>
+	<select id="select" parameterType="String" resultType="vo.EduVO">
+		select * from edu_T
+		where E_IDX = #{E_IDX}
+	</select>
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO edu_t(E_IDX,E_WRITEDATE,E_STARTDATE,E_ENDDATE,E_TITLE,E_CONTENT,E_IMG,E_IMG_S,E_CATEGORY,E_STATUS )
+		values(seq_edu.NEXTVAL, sysdate, #{E_STARTDATE},#{E_ENDDATE}, #{E_TITLE}, #{E_CONTENT}, #{E_IMG}, #{E_IMG_S}, #{E_CATEGORY}, 0)
+	</insert>
+	<update id="del" parameterType="java.util.Map">
+		UPDATE edu_t
+		SET E_STATUS = 1
+		WHERE E_IDX=#{E_IDX}
+	</update>
+	<update id="restore" parameterType="java.util.Map">
+		UPDATE edu_t
+		SET E_STATUS = 0
+		WHERE E_IDX=#{E_IDX}
+	</update>
+	<update id="update" parameterType="java.util.Map">
+		update edu_t
+		set E_TITLE=#{E_TITLE},
+			E_CONTENT=#{E_CONTENT},
+			E_STARTDATE =#{E_STARTDATE},
+			E_ENDDATE=#{E_ENDDATE}
+		<if test="E_IMG != null">
+			,E_IMG=#{E_IMG}
+			,E_IMG_S=#{E_IMG_S}
+		</if>
+		where E_IDX=#{E_IDX}
+	</update>
+</mapper>

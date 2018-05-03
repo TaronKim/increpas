@@ -176,7 +176,7 @@ if (nowPage > totalPage) {
 							<a href="project_view.jsp?c_idx=<%=pvo.getC_idx()%>&cPage=<%=nowPage%>">
 								<div class="img"><img src="<%=request.getContextPath() %>/upload/<%=pvo.getC_img() %>" alt="인크레파스" /></div>
 								<h1><%=pvo.getC_title() %></h1>
-								<h2><%=pvo.getEvo().getE_title() %></h2>
+								<h2><%=pvo.getEvo().getE_TITLE() %></h2>
 								<p>작성일 | <%=pvo.getC_writedate().substring(0, 10) %></p>
 							</a>
 						</div>

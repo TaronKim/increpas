@@ -86,13 +86,13 @@
 												<%
 													if(ar != null){
 														for(EduVO vo : ar){
-															if(vo.getE_idx().equals(e_idx)){
+															if(vo.getE_IDX().equals(e_idx)){
 												%>
-															<option selected value="<%=vo.getE_idx()%>"><%=vo.getE_title() %></option>
+															<option selected value="<%=vo.getE_IDX()%>"><%=vo.getE_TITLE() %></option>
 												<%
 															}else{
 												%>				
-															<option value="<%=vo.getE_idx()%>"><%=vo.getE_title() %></option>
+															<option value="<%=vo.getE_IDX()%>"><%=vo.getE_TITLE() %></option>
 												<%				
 															}
 														}

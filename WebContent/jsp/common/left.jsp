@@ -1,5 +1,18 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="dao.eduDAO"%>
+<%@page import="vo.EduVO"%>
+<%@page import="vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%    
+	MemberVO mvo = null;
+	Object obj = session.getAttribute("mvo");
+	if(obj != null){
+		mvo = (MemberVO)obj;
+	}
+%>
 <div class="customer">
 		<img src="<%=request.getContextPath() %>/images/customer.jpg" alt="인크레파스 전화" />
 		<div id="katalk_div">
@@ -17,22 +30,48 @@
 				
   
     <ul class="left_menu_list">
-    
-		<li>
-			<a href="view_course.inc?num=18">
-				<div class="img"><img src="http://increpas.com/ems/upload/thumbnail/Thumb_Increpas_Java_Arduino_IoT_20180201.jpg" alt="" /></div>
-				<h1>자바 개발자 과정 & 아두이노를 활용한 사물인터넷 (IoT) 엔지니어링 양성 과정</h1>
-				<p>2018-05-24</p>
-			</a>
-		</li>
-	
-		<li>
-			<a href="view_course.inc?num=20">
-				<div class="img"><img src="http://increpas.com/ems/upload/thumbnail/Thumb_Java_AI_20180201.JPG" alt="" /></div>
-				<h1>자바머신러닝기반 응용SW엔지니어 양성과정</h1>
-				<p>2018-04-26</p>
-			</a>
-		</li>
+    	<%	
+								EduVO[] ar = eduDAO.getList();
+							 	int cnt = 0;
+							 	Date keyStartDate; // 삭제 시작일
+							 	Date currentDate; // 현재날짜 Date
+							 	String oTime = ""; // 현재날짜
+							 	String compareVal = "N";
+							 	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+							 	Date currentTime = new Date();
+							 	oTime = mSimpleDateFormat.format ( currentTime ); //현재시간 (String)
+							 		if(ar != null && ar.length > 0){
+										for(EduVO evo : ar){
+											keyStartDate = mSimpleDateFormat.parse(evo.getE_STARTDATE());
+											currentDate =  mSimpleDateFormat.parse( oTime );
+											int compare = currentDate.compareTo(keyStartDate);
+											if(evo.getE_CATEGORY().equals("1") && evo.getE_STATUS().equals("0") && compare <= 0){
+												cnt++;
+												%>
+												<li>
+												<a href="<%=request.getContextPath()%>/jsp/edu/gov_view.jsp?E_IDX=<%=evo.getE_IDX()%>">
+												<div class="img"><img src="<%=request.getContextPath()%>/jsp/edu/gov_upload/<%=evo.getE_IMG()%>" width="50px" height="auto" alt="" /></div>
+												<h1><%=evo.getE_TITLE() %></h1>
+												<p><%=evo.getE_STARTDATE().substring(0,10) %></p>
+												</a>
+												</li>
+												<%
+											}
+										}
+							 		}
+							 		if(cnt == 0){
+										%>
+									<tr>
+										<td colspan="3" class="empty">
+											현재 등록된 국비지원(국가기간)과정이 없습니다.
+										</td>
+									</tr>
+									<%
+									
+									}
+							 	
+									%>
+		
 	
 		
 	</ul>

@@ -240,6 +240,31 @@ transition: all 0.3s ease;
 .sub_tit2 p {font-size:16px; color:#303030; font-weight:normal; padding-top:13px;opacity:0.8; filter:alpha(opacity=80);}
 .sub_tit2 p span {display:block;font-size:16px; color:#303030;}
 
+/* psh */
+.wrap_btn{padding:50px 0 40px;}
+.btn_style1{display: inline-block;
+    vertical-align: top;
+    width: 47px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    background: #009add;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #fff;}
+.btn_style2{display: inline-block;
+    vertical-align: top;
+    width: 80px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    background: #009add;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #fff;}
+.search_area {position:relative;text-align:right; padding-top:21px; padding-bottom:25px;}
+/* //psh */
+
 .search_area {text-align:right; padding-top:21px; padding-bottom:25px;}
 .search_input {width: 70%; max-width:173px; height:32px; padding-left:10px; line-height:32px;border:1px solid #c6c6c6; margin-right:5px;}
 .search_area a.search_btn {display:inline-block; vertical-align:top; width:47px; height:34px; text-align:center; line-height:34px; background:#009add; border-radius:3px; font-size:14px; color:#fff;}
