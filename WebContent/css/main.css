@@ -175,7 +175,7 @@ transition: all 0.3s ease;
 .location a {display:inline-block; vertical-align:top;border-left:1px solid #e2e2e2;height:56px; line-height:56px;}
 .location span {display:inline-block; vertical-align:top;border-left:1px solid #e2e2e2;height:56px; line-height:56px; width:146px; text-align:center; font-size:15px; color:#555;}
 
-.sub_box1 {margin-left:80px; position:relative; padding-right:297px;min-height: 1200px;}
+.sub_box1 {margin-left:80px; position:relative; padding-right:297px;/* min-height: 1200px; */}/*kjh*/
 .sub_box1_1 {height:433px; background:url(../images/sub_img1.jpg) no-repeat right top; border-bottom:3px solid #009add;}
 .sub_box1_1 h1 {font-size:24px; color:#333; font-weight:600; padding-top:66px; margin-bottom:90px;}
 .sub_box1_1 p {font-size:38px; color:#303030; line-height:51px; opacity:0.8; filter:alpha(opacity=80); font-weight:100;}

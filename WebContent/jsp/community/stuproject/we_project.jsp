@@ -176,7 +176,7 @@ if (nowPage > totalPage) {
 							<a href="project_view.jsp?c_idx=<%=pvo.getC_idx()%>&cPage=<%=nowPage%>">
 								<div class="img"><img src="<%=request.getContextPath() %>/upload/<%=pvo.getC_img() %>" alt="인크레파스" /></div>
 								<h1><%=pvo.getC_title() %></h1>
-								<h2><%=pvo.getEvo().getE_TITLE() %></h2>
+								<h2><%=pvo.getEvo().getE_title() %></h2>
 								<p>작성일 | <%=pvo.getC_writedate().substring(0, 10) %></p>
 							</a>
 						</div>
@@ -195,6 +195,10 @@ if (nowPage > totalPage) {
 							
 					</ul>
 					
+				<%	
+				if (ar != null && ar.length > 0){
+				%>
+				
 					<!-- paging -->
 					<div class="paging">
 				<%
@@ -253,8 +257,13 @@ if (nowPage > totalPage) {
 					<img src='<%=request.getContextPath() %>/images/next.jpg'>
 				<%		
 					}
-				%> 
-						
+					
+				}else{
+				%>	
+						<div class="paging"></div>
+				<%
+				}
+				%> 	
 					</div>
 					<!-- //paging -->
 				</div>
@@ -291,10 +300,6 @@ if (nowPage > totalPage) {
 
 <script type="text/javascript">
 	function goSearch(){
-		
-		var keyword = $("#keyword");
-		
-		
 		document.searchForm.submit();
 		
 	}
