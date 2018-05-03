@@ -1,0 +1,104 @@
+create table mem_t(
+    m_id varchar2(100) PRIMARY KEY,
+    m_pw varchar2(50) not null,
+    m_name varchar2(20) not null,
+    m_birth varchar2(30) not null,
+    m_sex varchar(6),
+    m_email varchar2(100),
+    m_phone varchar2(20),
+    m_zip varchar2(10),
+    m_addr varchar2(100),
+    m_school varchar2(50),
+    m_major varchar2(50),
+    m_grad varchar2(20), 
+    e_idx number,
+    m_edate varchar2(50),
+    m_type varchar2(2),
+    m_status varchar2(2)
+
+
+	CONSTRAINT edu_fk FOREIGN KEY (e_idx) REFERENCES edu_t(e_idx)
+);
+
+
+create table job_t(
+    j_idx number,
+    j_title  varchar2(100) not null,
+    j_content CLOB,
+    j_writedate DATE,
+    m_id varchar2(50) not null,
+    j_hiredate DATE,
+    j_company varchar2(50),
+    m_status varchar2(2),
+    j_student_name varchar2(50),
+j_location varchar2(50),
+ j_birth varchar2(50),
+ j_process(50),
+    CONSTRAINT job_fk FOREIGN KEY (m_id) REFERENCES mem_t(m_id)
+);
+
+create sequence seq_job
+increment by 1
+start with 1;
+
+
+create table cmty_t(
+    c_idx number primary key,
+    c_writedate DATE,
+    c_title varchar2(100) not null,
+    c_content CLOB,
+    c_img varchar2(100),
+    c_video varchar2(100),
+    c_category varchar2(20),
+    m_id varchar2(100) not null,
+    c_status varchar2(2),
+    e_idx number   
+
+    CONSTRAINT cmty_t_fk FOREIGN KEY (m_id) REFERENCES mem_t(m_id),
+CONSTRAINT edu_fk FOREIGN KEY (e_idx) REFERENCES edu_t(e_idx)
+);
+
+create sequence seq_cmty
+increment by 1
+start with 1;
+
+create table edu_t(
+    e_idx number PRIMARY KEY,
+    e_writedate DATE,
+    e_startdate DATE,
+    e_enddate DATE,
+    e_title varchar2(100) not null,
+    e_content CLOB,
+    e_img varchar2(100),
+    e_category varchar2(20),
+    e_status varchar2(2),
+
+   
+);
+
+create sequence seq_edu
+increment by 1
+start with 1;
+
+
+
+select * from cmty_t where c_category = 3;
+
+
+ALTER TABLE job_t
+RENAME COLUMN m_status TO j_status;
+
+
+select * from job_t;
+
+
+
+
+
+
+
+
+create table process_t(
+
+
+

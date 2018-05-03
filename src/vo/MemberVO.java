@@ -1,143 +1,159 @@
 package vo;
 
 public class MemberVO {
-	private String M_ID, M_PW, M_NAME, M_BIRTH, M_SEX, M_EMAIL, M_PHONE, M_ZIP, M_ADDR, M_SCHOOL, M_MAJOR, M_GRAD,
-			M_PROCESS, e_idx, M_EDATE, M_TYPE, M_STATUS;
+	private String
+	m_id,
+	m_pw,
+	m_name,
+	m_birth,
+	m_sex,
+	m_email,
+	m_phone,
+	m_zip, 
+	m_addr,
+	m_school,
+	m_major,
+	m_grad,
+	m_process,
+	m_edate,
+	m_type,
+	m_status,
+	chk;
 
-	public String getE_idx() {
-		return e_idx;
+	public String getM_id() {
+		return m_id;
 	}
 
-	public void setE_idx(String e_idx) {
-		this.e_idx = e_idx;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getM_ID() {
-		return M_ID;
+	public String getM_pw() {
+		return m_pw;
 	}
 
-	public void setM_ID(String m_ID) {
-		M_ID = m_ID;
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
 	}
 
-	public String getM_PW() {
-		return M_PW;
+	public String getM_name() {
+		return m_name;
 	}
 
-	public void setM_PW(String m_PW) {
-		M_PW = m_PW;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 
-	public String getM_NAME() {
-		return M_NAME;
+	public String getM_birth() {
+		return m_birth;
 	}
 
-	public void setM_NAME(String m_NAME) {
-		M_NAME = m_NAME;
+	public void setM_birth(String m_birth) {
+		this.m_birth = m_birth;
 	}
 
-	public String getM_BIRTH() {
-		return M_BIRTH;
+	public String getM_sex() {
+		return m_sex;
 	}
 
-	public void setM_BIRTH(String m_BIRTH) {
-		M_BIRTH = m_BIRTH;
+	public void setM_sex(String m_sex) {
+		this.m_sex = m_sex;
 	}
 
-	public String getM_SEX() {
-		return M_SEX;
+	public String getM_email() {
+		return m_email;
 	}
 
-	public void setM_SEX(String m_SEX) {
-		M_SEX = m_SEX;
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
-	public String getM_EMAIL() {
-		return M_EMAIL;
+	public String getM_phone() {
+		return m_phone;
 	}
 
-	public void setM_EMAIL(String m_EMAIL) {
-		M_EMAIL = m_EMAIL;
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
 	}
 
-	public String getM_PHONE() {
-		return M_PHONE;
+	public String getM_zip() {
+		return m_zip;
 	}
 
-	public void setM_PHONE(String m_PHONE) {
-		M_PHONE = m_PHONE;
+	public void setM_zip(String m_zip) {
+		this.m_zip = m_zip;
 	}
 
-	public String getM_ZIP() {
-		return M_ZIP;
+	public String getM_addr() {
+		return m_addr;
 	}
 
-	public void setM_ZIP(String m_ZIP) {
-		M_ZIP = m_ZIP;
+	public void setM_addr(String m_addr) {
+		this.m_addr = m_addr;
 	}
 
-	public String getM_ADDR() {
-		return M_ADDR;
+	public String getM_school() {
+		return m_school;
 	}
 
-	public void setM_ADDR(String m_ADDR) {
-		M_ADDR = m_ADDR;
+	public void setM_school(String m_school) {
+		this.m_school = m_school;
 	}
 
-	public String getM_SCHOOL() {
-		return M_SCHOOL;
+	public String getM_major() {
+		return m_major;
 	}
 
-	public void setM_SCHOOL(String m_SCHOOL) {
-		M_SCHOOL = m_SCHOOL;
+	public void setM_major(String m_major) {
+		this.m_major = m_major;
 	}
 
-	public String getM_MAJOR() {
-		return M_MAJOR;
+	public String getM_grad() {
+		return m_grad;
 	}
 
-	public void setM_MAJOR(String m_MAJOR) {
-		M_MAJOR = m_MAJOR;
+	public void setM_grad(String m_grad) {
+		this.m_grad = m_grad;
 	}
 
-	public String getM_GRAD() {
-		return M_GRAD;
+	public String getM_process() {
+		return m_process;
 	}
 
-	public void setM_GRAD(String m_GRAD) {
-		M_GRAD = m_GRAD;
+	public void setM_process(String m_process) {
+		this.m_process = m_process;
 	}
 
-	public String getM_PROCESS() {
-		return M_PROCESS;
+	public String getM_edate() {
+		return m_edate;
 	}
 
-	public void setM_PROCESS(String m_PROCESS) {
-		M_PROCESS = m_PROCESS;
+	public void setM_edate(String m_edate) {
+		this.m_edate = m_edate;
 	}
 
-	public String getM_EDATE() {
-		return M_EDATE;
+	public String getM_type() {
+		return m_type;
 	}
 
-	public void setM_EDATE(String m_EDATE) {
-		M_EDATE = m_EDATE;
+	public void setM_type(String m_type) {
+		this.m_type = m_type;
 	}
 
-	public String getM_TYPE() {
-		return M_TYPE;
+	public String getM_status() {
+		return m_status;
 	}
 
-	public void setM_TYPE(String m_TYPE) {
-		M_TYPE = m_TYPE;
+	public void setM_status(String m_status) {
+		this.m_status = m_status;
 	}
 
-	public String getM_STATUS() {
-		return M_STATUS;
+	public String getChk() {
+		return chk;
 	}
 
-	public void setM_STATUS(String m_STATUS) {
-		M_STATUS = m_STATUS;
+	public void setChk(String chk) {
+		this.chk = chk;
 	}
 
 }

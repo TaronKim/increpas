@@ -19,6 +19,7 @@
      <mapper resource="mapper/job.xml"/>
      <mapper resource="mapper/edu.xml"/>
       <mapper resource="mapper/yeyak.xml" />
+      <mapper resource="mapper/study.xml"/>
   </mappers>
 </configuration>
 

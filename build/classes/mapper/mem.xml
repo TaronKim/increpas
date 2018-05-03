@@ -25,5 +25,37 @@
 		SET m_status = #{m_status}
 		WHERE m_id = #{m_id} 
 	</update>
+	<!-- 교육정보 가져오기 -->
+	<select id="getEduList" resultType="vo.EduVO">
+		SELECT * FROM edu_t
+		WHERE e_status = 0 
+	</select>
+	<!-- 교육정보 선택 -->
+	<select id="getEdu" resultType="vo.EduVO" parameterType="String">
+		SELECT * FROM edu_t
+		WHERE e_idx = #{e_idx}
+	</select>
+	<!-- 아이디 중복체크 -->
+	<select id="checkId" resultType="String" parameterType="String">
+		SELECT m_id FROM mem_t
+		WHERE m_id = #{m_id}
+	</select>
+	<!-- 회원가입 -->
+	<insert id="addMem" parameterType="java.util.Map">
+		INSERT INTO mem_t(m_id,m_pw,m_name,m_birth,m_sex,m_email,m_phone,m_zip,m_addr,m_school,m_major,m_grad,m_process,m_edate,m_type,m_status)
+		VALUES(#{m_id},#{m_pw},#{m_name},#{m_birth},#{m_sex},#{m_email},#{m_phone},#{m_zip},#{m_addr},#{m_school},#{m_major},#{m_grad},#{m_process},sysdate,1,0)
+	</insert>
+	<!-- 비밀번호 변경 -->
+	<update id="editPw" parameterType="java.util.Map">
+		UPDATE mem_t SET m_pw = #{re_pw} WHERE m_id = #{m_id} AND m_pw = #{m_pw} 
+	</update>
+	<!-- 회원정보 수정 -->
+	<update id="editMem" parameterType="vo.MemberVO">
+		UPDATE mem_t SET 
+		 m_birth = #{m_birth},m_sex = #{m_sex},
+		 m_email = #{m_email},m_phone = #{m_phone},m_zip = #{m_zip},
+		 m_addr = #{m_addr},m_school = #{m_school},m_major = #{m_major}, m_grad = #{m_grad}
+		 WHERE m_id = #{m_id} 
+	</update>
 	
 </mapper>

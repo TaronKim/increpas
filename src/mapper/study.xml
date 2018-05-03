@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study">
+
+	
+	<!-- 사용자가 목록을 요청할 때 호출되는 SELECT -->
+	<select id="studyList" parameterType="java.util.Map"
+	resultType="vo.StudyVO">
+		SELECT * FROM (
+			SELECT rownum r_num, a.* FROM (
+				SELECT * FROM cmty_t
+				WHERE c_status = 0 AND c_category = 3
+				AND c_video = #{c_video}
+				ORDER BY c_idx DESC
+			) a
+		)WHERE r_num BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 사용자가 목록을 가져오기 위해
+		먼저 전체 게시물의 수를 알아야 한다. -->
+	<select id="totalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM cmty_t
+		WHERE c_status = 0 AND c_category = 3 AND c_video = #{c_video}
+	</select>
+	
+	<select id="getStudy" parameterType="String" resultType="vo.StudyVO">
+		SELECT * FROM cmty_t
+		WHERE c_idx = #{c_idx}
+	</select>
+	
+	<insert id="addStudy" parameterType="java.util.Map">
+		INSERT INTO cmty_t(c_idx,c_writedate,c_title,c_content,c_img,c_video,c_category,m_id,c_status)
+		VALUES(seq_cmty.nextval,sysdate,#{c_title},#{c_content},#{c_img},#{c_video},3,'admin',0)
+	</insert>
+	<!-- 삭제하는 update -->
+	<update id="delStudy" parameterType="int">
+		UPDATE cmty_t SET c_status = 1 WHERE c_idx = #{c_idx} 
+	</update>
+	
+	<!-- 글 수정 -->
+	<update id="editStudy" parameterType="java.util.Map">
+		UPDATE cmty_t SET
+		 c_title = #{c_title}, c_content = #{c_content}
+		 <if test="c_img != null">
+			,c_img = #{c_img}
+			</if>
+		 WHERE c_idx = #{c_idx} 
+	</update>
+</mapper>  
+
+
+
+
+
+
