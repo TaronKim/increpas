@@ -70,6 +70,7 @@ create table edu_t(
     e_title varchar2(100) not null,
     e_content CLOB,
     e_img varchar2(100),
+    e_img_s varchar2(100),
     e_category varchar2(20),
     e_status varchar2(2),
 
@@ -100,5 +101,13 @@ select * from job_t;
 
 create table process_t(
 
-
+create table YEYAK_T(
+	y_writedate DATE,
+	y_date DATE,
+	y_title varchar2(30),
+	y_con varcahr2(5),
+	y_phone varchar2(30),
+	y_category varchar2(20),
+	y_name varchar2(20)
+);
 
