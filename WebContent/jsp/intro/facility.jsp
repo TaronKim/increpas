@@ -12,20 +12,20 @@
 <meta name="description" content="인크레파스, 개발자로 성장하는 학교, 국비지원, 빅데이터교육, 국비지원직업훈련">
 <title>인크레파스: 인사말</title>
 
-<link rel="stylesheet" type="text/css" href="../css/main.css"/>
-<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
 
-<script src="../js/jquery-1.10.2.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="../js/main.js"></script>
+<script src="../../js/jquery-1.10.2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/main.js"></script>
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.min.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="../js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
 
-<script src="../js/slickcustomscroll.js"></script>
+<script src="../../js/slickcustomscroll.js"></script>
 
 
 <script type="text/javascript">    
@@ -106,7 +106,7 @@
 	<jsp:include page="/jsp/common/footer.jsp"></jsp:include>
 
 <!-- script select -->
-<script type="text/javascript" src="../js/jquery.stylish-select.js"></script>
+<script type="text/javascript" src="../../js/jquery.stylish-select.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('select').sSelect({ddMaxHeight: '300px'});
