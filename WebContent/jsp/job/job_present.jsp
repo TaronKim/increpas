@@ -113,7 +113,7 @@
                   <p>인크레파스를 통해 원하시는 기업에 꼭 취업하시길 바랍니다.
                   
           			 <%
-						if(mvo != null && mvo.getM_TYPE().equals("0")){
+						if(mvo != null && mvo.getM_type().equals("0")){
 					%>      
 										                   
 					<span  style="float: right"><input class="btn btn_write" type="button" value="글쓰기" onclick="write_bt()" /></span>
@@ -141,7 +141,7 @@
                               <th class="mo_ver">지 역</th>
                               <th class="mo_ver">등록일</th>
                               <%
-                           	if(mvo != null && mvo.getM_TYPE().equals("0")){
+                           	if(mvo != null && mvo.getM_type().equals("0")){
                            		%>
                            		<th>
                            			삭제여부
@@ -163,7 +163,7 @@
                      int totalPage = 0;  // 총 페이지 수     
                      
                      
-                     if(mvo != null && mvo.getM_TYPE().equals("0")){
+                     if(mvo != null && mvo.getM_type().equals("0")){
                     	 
                     	 totalRecord =JobDAO.getTotalCountAdmin();
                      }else{
@@ -185,7 +185,7 @@
                      int m_type = 1;
                      
                      if(mvo != null){
-                    		 m_type = Integer.parseInt(mvo.getM_TYPE());
+                    		 m_type = Integer.parseInt(mvo.getM_type());
                      }
                      
                       
@@ -207,7 +207,7 @@
                            <td class="mo_ver"><p><%= vo.getJ_location() %></p></td>
                            <td class="mo_ver"><%= vo.getJ_writedate().substring(0, 10) %></td>
                            <%
-                           	if(mvo!=null && mvo.getM_TYPE().equals("0")){
+                           	if(mvo!=null && mvo.getM_type().equals("0")){
                            		%>
                            		<td>
                            			<%if(vo.getJ_status().equals("0")) {

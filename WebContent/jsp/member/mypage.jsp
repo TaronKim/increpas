@@ -487,7 +487,7 @@
 										<tr>
 											<th>이 름</th>
 											<td><%=mvo.getM_name()%>
-											<input type="hidden" name="m_id" value="<%=mvo.getM_name()%>" />
+											<input type="hidden" name="m_name" value="<%=mvo.getM_name()%>" />
 											</td>
 										</tr>
 

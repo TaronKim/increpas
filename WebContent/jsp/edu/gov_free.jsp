@@ -83,7 +83,7 @@
 						
 						<%
 						if(obj != null){
-						if(mvo.getM_TYPE().equals("0")){
+						if(mvo.getM_type().equals("0")){
 						%>
 							<div class="button"><a href="<%=request.getContextPath()%>/jsp/edu/gov_write.jsp" class="write_btn">글쓰기</a></div>
 						<%
@@ -129,7 +129,7 @@
 							 	if(ar != null && ar.length > 0){
 										for(EduVO evo : ar){
 											
-											if(mvo.getM_TYPE().equals("0")){
+											if(mvo.getM_type().equals("0")){
 												cnt++;
 												if(evo.getE_STATUS().equals("1")){
 												%>

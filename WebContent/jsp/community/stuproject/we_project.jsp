@@ -68,9 +68,9 @@ int numPerPage = 6;//한 페이지당 보여질 게시물의 수
 int pagePerBlock = 5; //페이지 묶음(한블럭당 5개 )
 int totalPage = 0; //총 페이지 수
 
-if(mvo != null && mvo.getM_TYPE().equals("0")){
+if(mvo != null && mvo.getM_type().equals("0")){
 	String m_type = "1";
-	m_type = mvo.getM_TYPE();
+	m_type = mvo.getM_type();
 	if(c_value != null && keyword != null  && !keyword.equals("") && !keyword.contains("null")){
 		totalRecord = ProjectDAO.sGetTotalCount(m_type, c_value, keyword);	
 	}else{
@@ -118,7 +118,7 @@ if (nowPage > totalPage) {
 					<div class="search_area">
 						<%
 							
-							if(mvo != null && mvo.getM_TYPE().equals("0")){
+							if(mvo != null && mvo.getM_type().equals("0")){
 						%>
 							<a href="project_write.jsp?cPage=<%=nowPage%>" class="search_btn btn_write">글쓰기</a>
 						<%
@@ -145,7 +145,7 @@ if (nowPage > totalPage) {
 					<%
 						int m_type = 1;
 						if(mvo != null){
-							m_type = Integer.parseInt(mvo.getM_TYPE());
+							m_type = Integer.parseInt(mvo.getM_type());
 						}
 					
 						int begin = (nowPage - 1) * numPerPage + 1;

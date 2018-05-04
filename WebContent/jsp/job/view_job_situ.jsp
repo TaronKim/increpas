@@ -111,7 +111,7 @@ if(vo !=null){
 						</table>
 					</div>
 					<%
-						if(mvo != null && mvo.getM_TYPE().equals("0")){
+						if(mvo != null && mvo.getM_type().equals("0")){
 							if(vo.getJ_status().equals("0")){
 					%>
 						<div class="bo_btn">

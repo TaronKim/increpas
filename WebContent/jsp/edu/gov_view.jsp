@@ -97,7 +97,7 @@
 							<a href="<%=request.getContextPath()%>/jsp/edu/gov_free.jsp" class="btn_style1">목록</a>
 							<a href="<%=request.getContextPath()%>/jsp/edu/gov_yeyak.jsp?E_IDX=<%=evo.getE_IDX()%>" class="btn_style2">상담 예약</a>
 						<%
-						}else if(mvo.getM_TYPE().equals("0")){
+						}else if(mvo.getM_type().equals("0")){
 							if(evo.getE_STATUS().equals("0")){
 						%>
 							<a href="<%=request.getContextPath()%>/jsp/edu/gov_free.jsp" class=btn_style1>목록</a>

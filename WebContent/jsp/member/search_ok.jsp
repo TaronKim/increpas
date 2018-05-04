@@ -199,26 +199,26 @@
 									%>
 									<tr>
 										<td><%=(ar.length - i++)%></td>
-										<td><%=vo.getM_ID()%></td>
-										<td><%=vo.getM_NAME()%></td>
-										<td><%=vo.getM_BIRTH()%></td>
-										<td><%=vo.getM_SEX()%></td>
-										<td><%=vo.getM_EMAIL()%></td>
-										<td><%=vo.getM_PHONE()%></td>
-										<td><%=vo.getM_ZIP()%></td>
-										<td><%=vo.getM_ADDR()%></td>
-										<td><%=vo.getM_SCHOOL()%></td>
-										<td><%=vo.getM_MAJOR()%></td>
-										<td><%=vo.getM_GRAD()%></td>
-										<td><%=vo.getM_STATUS()%></td>
+										<td><%=vo.getM_id()%></td>
+										<td><%=vo.getM_name()%></td>
+										<td><%=vo.getM_birth()%></td>
+										<td><%=vo.getM_sex()%></td>
+										<td><%=vo.getM_email()%></td>
+										<td><%=vo.getM_phone()%></td>
+										<td><%=vo.getM_zip()%></td>
+										<td><%=vo.getM_addr()%></td>
+										<td><%=vo.getM_school()%></td>
+										<td><%=vo.getM_major()%></td>
+										<td><%=vo.getM_grad()%></td>
+										<td><%=vo.getM_status()%></td>
 
 										<%
-											if (vo.getM_STATUS().equals("0")) {
+											if (vo.getM_status().equals("0")) {
 										%>
 										<td>
 											<div class="bo_btn">
 												<a
-													href="search_del.jsp?m_id=<%=vo.getM_ID()%>&m_status=<%=vo.getM_STATUS()%>">삭제</a>
+													href="search_del.jsp?m_id=<%=vo.getM_id()%>&m_status=<%=vo.getM_status()%>">삭제</a>
 											</div>
 										</td>
 										<%
@@ -227,7 +227,7 @@
 										<td>
 											<div class="bo_btn">
 												<a
-													href="search_del.jsp?m_id=<%=vo.getM_ID()%>&m_status=<%=vo.getM_STATUS()%>">복구</a>
+													href="search_del.jsp?m_id=<%=vo.getM_id()%>&m_status=<%=vo.getM_status()%>">복구</a>
 											</div>
 										</td>
 										<%

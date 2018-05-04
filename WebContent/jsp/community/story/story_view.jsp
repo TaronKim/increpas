@@ -85,7 +85,7 @@
 					<div class="bo_btn">
 						<% 
 							if(mvo !=null){
-							if(mvo.getM_TYPE().equals("0")){
+							if(mvo.getM_type().equals("0")){
 						%>
 						<a href="edit.jsp?nowPage=<%=c_page %>&c_idx=<%=vo.getC_idx()%>">수정</a>
 						<a href="del.jsp?c_idx=<%=vo.getC_idx() %>&cPage=<%=c_page%>">삭제</a>

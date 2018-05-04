@@ -121,7 +121,7 @@ src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 									</tr>
 									<tr>
 										<th>작성자:</th>
-										<td><input type="text" id="writer" class="writer" name="writer" readonly="readonly" value="<%=mvo.getM_ID() %>" style="width:100px;" /></td>
+										<td><input type="text" id="writer" class="writer" name="writer" readonly="readonly" value="<%=mvo.getM_id() %>" style="width:100px;" /></td>
 									</tr>
 									<tr>
 										<th>내용:</th>

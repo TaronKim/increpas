@@ -2,7 +2,6 @@ package dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -12,7 +11,7 @@ import vo.CommVO;
 public class CommDAO {
 
 	// 목록 기능 - we_story.jsp에서 호출한다
-	public static CommVO[] getList(int begin, int end, int m_type) {
+	public static CommVO[] getList(int begin, int end, int m_type ) {
 
 		CommVO[] value = null;
 		SqlSession ss = FactoryService.getFactory().openSession();
@@ -40,7 +39,8 @@ public class CommDAO {
 	}
 
 	// 원글을 저장하는 기능
-	public static void insert(String c_title, String c_img, String c_video, String m_id, String c_content) {
+	public static void insert(String c_title, String c_img, String c_video, String m_id,
+			String c_content) {
 
 		SqlSession ss = FactoryService.getFactory().openSession();
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -88,15 +88,16 @@ public class CommDAO {
 	}
 
 	// 원글 수정 기능
-	public static boolean editComm(String c_idx, String c_title, String c_img, String c_content) {
+	public static boolean editComm(String c_idx, String c_title, String c_img,
+			String c_content) {
 		boolean value = false;
-
+ 	
 		SqlSession ss = FactoryService.getFactory().openSession();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("c_idx", c_idx);
 		map.put("c_title", c_title);
 		map.put("c_img", c_img);
-
+		
 		map.put("c_content", c_content);
 
 		int cnt = ss.update("comm.editComm", map);
@@ -108,44 +109,6 @@ public class CommDAO {
 		ss.close();
 
 		return value;
-	}
-
-	// 검색 게시물
-	public static CommVO[] sProjectList(int begin, int end, int m_type, String c_value, String keyword) {
-
-		CommVO[] ar = null;
-		SqlSession ss = FactoryService.getFactory().openSession();
-		Map<String, Object> map = new HashMap<>();
-		map.put("begin", begin);
-		map.put("end", end);
-		map.put("m_type", m_type);
-		map.put("c_value", c_value);
-		map.put("keyword", keyword);
-
-		List<CommVO> list = ss.selectList("comm.scommList", map);
-
-		if (list != null && list.size() > 0) {
-			ar = new CommVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-
-		return ar;
-
-	}
-
-	// 검색한 회원의 수 반환
-	public static int sGetTotalCount(String m_type, String c_value, String keyword) {
-
-		SqlSession ss = FactoryService.getFactory().openSession();
-		Map<String, String> map = new HashMap<>();
-		map.put("m_type", m_type);
-		map.put("c_value", c_value);
-		map.put("keyword", keyword);
-		int cnt = ss.selectOne("comm.sTotalCount", map);
-		ss.close();
-		return cnt;
-
 	}
 
 }
