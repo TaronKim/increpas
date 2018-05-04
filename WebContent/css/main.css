@@ -3,6 +3,13 @@
 @charset "utf-8";
 
 /* 180501 kjh */
+	.pop_cont{display:none;position:absolute;left:50%;top:50%;width:300px;height:180px;
+			margin:-90px 0 0 -150px;background:#fff;text-align:center;border:2px solid #009add}
+	.pop_cont .inner{}
+	.pop_cont strong{display:block;padding:10px 10px;background:#009add;border-bottom:1px solid #009add;text-align:left;font-weight:bold;color:#fff;}
+	.pop_cont p{padding:35px;}
+	.pop_cont .btn_area{}
+	.pop_cont .btn_area a{padding:10px 10px;background:#009add;border-radius:5px;color:#fff;}
 	.board_list li .layout h2{height:17px;line-height:1.2;}
 	.board_list li.list_none{width:100%;}
 	.board_list li.list_none p{text-align: center;}
